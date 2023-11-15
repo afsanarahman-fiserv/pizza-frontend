@@ -20,8 +20,8 @@ class EmployeeService {
 
     }
 
-    deleteEmployee() {
-
+    deactivateEmployee(employee) {
+        
     }
 
 }
