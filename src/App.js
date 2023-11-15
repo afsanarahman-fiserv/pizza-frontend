@@ -2,9 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
 import ViewEmployees from './components/ViewEmployees';
-import AddEmployee from './components/ViewEmployees';
-import DeleteEmployee from './components/ViewEmployees';
-import UpdateEmployee from './components/ViewEmployees';
+import AddEmployee from './components/AddEmployee';
+import DeleteEmployee from './components/DeleteEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
 
 function App() {
   return (
