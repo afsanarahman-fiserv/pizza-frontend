@@ -42,7 +42,7 @@ export default function ViewCustomers() {
                             <tr>
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.name}</td>
-                                <td>{customers.address}</td>
+                                <td>{customers.street_address}</td>
                                 <td>{customers.zip_code}</td>
                                 <td>
                                     <button onClick={()=>{handleUpdate(customers.phone_number)}}>Edit</button>
