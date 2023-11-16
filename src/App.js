@@ -8,7 +8,6 @@ import UpdateEmployee from './components/UpdateEmployee';
 import MainMenu from './components/MainMenu';
 import ViewCustomers from './components/ViewCustomers';
 import ViewOrders from './components/ViewOrders';
-import EmployeeMenu from './components/EmployeeMenu';
 import AddCustomer from './components/AddCustomer';
 
 function App() {
@@ -22,8 +21,7 @@ function App() {
       <Route path={"/newOrder"} element={<ViewCustomers/>} exact={true}></Route>
       <Route path={"/newOrder/newCustomer"} element={<AddCustomer/>} exact={true}></Route>
       <Route path={"/viewOrders"} element={<ViewOrders/>} exact={true}></Route>
-
-      <Route path={"/employeeMenu"} element={<EmployeeMenu/>} exact={true}></Route>
+      
       <Route path={"/employeeMenu/viewEmployees"} element={<ViewEmployees/>} exact={true}></Route>
       <Route path={"/employeeMenu/addEmployee"} element={<AddEmployee/>} exact={true}></Route>
       <Route path={"/employeeMenu/updateEmployee"} element={<UpdateEmployee/>} exact={true}></Route>
