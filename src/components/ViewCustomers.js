@@ -35,15 +35,19 @@ export default function ViewCustomers() {
                                 <td>{customers.name}</td>
                                 <td>{customers.address}</td>
                                 <td>{customers.zip_code}</td>
+                                <td>
+                                    <button>Edit</button>
+                                    <button>Update</button>
+                                </td>
                             </tr>
                         )
                     })
                 }
             </tbody>
         </table>
-        <Link to="/newOrder/newCustomer">
-            <button>Add New Customer</button>
-        </Link>
+        <button>
+            <Link to="/newOrder/newCustomer">Add New Customer</Link>
+        </button>
         </>
     );
 }
