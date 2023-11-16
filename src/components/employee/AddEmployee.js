@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import EmployeeService from "../service/EmployeeService";
+import EmployeeService from "../../service/EmployeeService";
 
 export default function AddEmployee() {
     let [name, setName] = useState('');

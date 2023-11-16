@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import CustomerService from "../service/CustomerService"
+import CustomerService from "../../service/CustomerService"
 import { Link } from 'react-router-dom'
 
 export default function ViewCustomers() {

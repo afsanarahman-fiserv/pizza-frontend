@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
-import ViewEmployees from './components/ViewEmployees';
-import AddEmployee from './components/AddEmployee';
-import DeactivateEmployee from './components/DeactivateEmployee';
-import UpdateEmployee from './components/UpdateEmployee';
+import ViewEmployees from './components/employee/ViewEmployees';
+import AddEmployee from './components/employee/AddEmployee';
+import DeactivateEmployee from './components/employee/DeactivateEmployee';
+import UpdateEmployee from './components/employee/UpdateEmployee';
 import MainMenu from './components/MainMenu';
-import ViewCustomers from './components/ViewCustomers';
+import ViewCustomers from './components/customer/ViewCustomers';
 import ViewOrders from './components/ViewOrders';
-import AddCustomer from './components/AddCustomer';
+import AddCustomer from './components//customer/AddCustomer';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import EmployeeService from "../service/EmployeeService";
+import EmployeeService from "../../service/EmployeeService";
 
 export default function UpdateEmployee() {
     let location = useLocation();
