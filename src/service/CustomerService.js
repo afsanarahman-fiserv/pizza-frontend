@@ -12,8 +12,8 @@ class CustomerService {
     }
 
     addCustomer(customer) {
-        return axios.post(addCustomerUrl, employee);
+        return axios.post(addCustomerUrl, customer);
     }
 }
 
-export default new EmployeeService();
+export default new CustomerService();

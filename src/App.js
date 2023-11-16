@@ -2,9 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
 import ViewEmployees from './components/ViewEmployees';
-import AddEmployee from './components/ViewEmployees';
-import DeleteEmployee from './components/ViewEmployees';
-import UpdateEmployee from './components/ViewEmployees';
+import AddEmployee from './components/AddEmployee';
+import DeactivateEmployee from './components/DeactivateEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
+import MainMenu from './components/MainMenu';
+import ViewCustomers from './components/ViewCustomers';
+import ViewOrders from './components/ViewOrders';
+import EmployeeMenu from './components/EmployeeMenu';
+import AddCustomer from './components/AddCustomer';
 
 function App() {
   return (
@@ -15,6 +20,7 @@ function App() {
       <Route path={"/"} element={<MainMenu/>} exact={true}></Route>
 
       <Route path={"/newOrder"} element={<ViewCustomers/>} exact={true}></Route>
+      <Route path={"/newOrder/newCustomer"} element={<AddCustomer/>} exact={true}></Route>
       <Route path={"/viewOrders"} element={<ViewOrders/>} exact={true}></Route>
 
       <Route path={"/employeeMenu"} element={<EmployeeMenu/>} exact={true}></Route>
