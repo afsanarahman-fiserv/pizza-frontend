@@ -39,6 +39,9 @@ export default function AddEmployee() {
             <br/>
             <input type="submit" value="Submit"/>
         </form>
+        <Link to="/employeeMenu/viewEmployees">
+            <p>Back to Employee List</p>
+        </Link>
         </>
     );
 }

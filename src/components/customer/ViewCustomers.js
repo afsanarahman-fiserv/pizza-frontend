@@ -57,6 +57,9 @@ export default function ViewCustomers() {
         <button>
             <Link to="/newOrder/newCustomer">Add New Customer</Link>
         </button>
+        <Link to="/">
+            <p>Back to Main Menu</p>
+        </Link>
         </>
     );
 }

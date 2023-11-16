@@ -57,6 +57,9 @@ export default function ViewEmployees() {
         <button>
             <Link to="/employeeMenu/addEmployee">Add New Employee</Link>
         </button>
+        <Link to="/">
+            <p>Back to Main Menu</p>
+        </Link>
         </>
     );
 }
