@@ -23,16 +23,16 @@ export default function UpdateEmployee() {
     let [employee_status, setStatus] = useState('');
     let [name, setName] = useState('');
     let [employee_role, setRole] = useState('');
-    let handleID = (e) => { setName(e.target.value) }
-    let handleStatus = (e) => { setName(e.target.value) }
+    let handleID = (e) => { setID(e.target.value) }
+    let handleStatus = (e) => { setStatus(e.target.value) }
     let handleName = (e) => { setName(e.target.value) }
     let handleRole = (e) => { setRole(e.target.value) }
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let employee = {employee_id : employee_id, name : name, employee_role : employee_role, employee_status : employee_status}
-        EmployeeService.updateEmployee(employee).then(()=>{
-            alert("Employee updated successfully")
+        let new_employee = {employee_id : employee.employee_id, name : name, employee_role : employee_role, employee_status : employee.employee_status}
+        EmployeeService.updateEmployee(new_employee).then(()=>{
+            alert(JSON.stringify(new_employee))
         }, ()=>{
             alert("Employee update failed")
         });
@@ -47,7 +47,7 @@ export default function UpdateEmployee() {
             </label>
             <br/>
             <label>
-                Status: <input onChange={handleStatus} type="text" value={employee_status} placeholder={employee.status} disabled/>
+                Status: <input onChange={handleStatus} type="text" value={employee_status} placeholder={employee.employee_status} disabled/>
             </label>
             <br/>
             <label>
