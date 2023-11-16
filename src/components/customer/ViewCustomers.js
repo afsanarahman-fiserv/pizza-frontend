@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CustomerService from "../../service/CustomerService"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function ViewCustomers() {
     let [state, setState] = useState({
@@ -14,6 +14,15 @@ export default function ViewCustomers() {
             }));
         }, ()=>{});
     }, []);
+
+    let navigate = useNavigate();
+    let handleUpdate = (phone_number) => {
+        navigate('/newOrder/updateCustomer', {state : {phone_number}})
+    }
+
+    let handleDelete = (phone_number) => {
+        navigate('/newOrder', {state : {phone_number}})
+    }
 
     return(
         <>
@@ -36,8 +45,8 @@ export default function ViewCustomers() {
                                 <td>{customers.address}</td>
                                 <td>{customers.zip_code}</td>
                                 <td>
-                                    <button>Edit</button>
-                                    <button>Update</button>
+                                    <button onClick={()=>{handleUpdate(customers.phone_number)}}>Edit</button>
+                                    <button onClick={()=>{handleDelete(customers.phone_number)}}>Delete</button>
                                 </td>
                             </tr>
                         )

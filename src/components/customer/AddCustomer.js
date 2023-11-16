@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import CustomerService from "../../service/CustomerService"
-import { Link } from 'react-router-dom'
+
 
 export default function AddCustomers() {
     let [phone_number, setPhone_Number] = useState('');
@@ -15,11 +15,11 @@ export default function AddCustomers() {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let customer = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
-        CustomerService.addEmployee(customer).then(()=>{
-            alert("Employee added successfully")
+        let customer = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code};
+        CustomerService.addCustomer(customer).then(()=>{
+            alert("Customer added successfully");
         }, ()=>{
-            alert("Employee creation failed")
+            alert("Customer creation failed");
         });
     }
 

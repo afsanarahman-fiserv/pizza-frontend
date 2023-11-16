@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import CustomerService from "../service/CustomerService"
+import CustomerService from "../../service/CustomerService"
+import { Link } from 'react-router-dom'
 export default function UpdateCustomer(){
     let location  = useLocation();
     let index = location.state.phone_number
@@ -14,9 +15,12 @@ export default function UpdateCustomer(){
     });
 
     useEffect(() =>{
-        CustomerService.f
-
-    }, []);
+        CustomerService.findCustomer(location.state.phone_number).then((response)=>{
+            setCustomer(response.data);
+        }, ()=>{
+            // alert("Failed to find user");
+        });
+    })
 
     let [phone_number, setPhone_Number] = useState('');
     let [name, setName] = useState('');
@@ -30,20 +34,20 @@ export default function UpdateCustomer(){
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let customer = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
-        CustomerService.addEmployee(customer).then(()=>{
-            alert("Employee added successfully")
+        let customers = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
+        CustomerService.UpdateCustomer(customers).then(()=>{
+            alert("Customer updated successfully")
         }, ()=>{
-            alert("Employee creation failed")
+            alert("Customer update failed")
         });
     }
 
     return(
         <>
-        <h3>Adding New Customer</h3>
+        <h3>Editiing Customer</h3>
         <form onSubmit={handleSubmit}>
             <label>
-                Phone Number: <input onChange={handleNumber} type="text" value={phone_number}/>
+                Phone Number: <input onChange={handleNumber} type="text" value={phone_number} disabled/>
             </label>
             <br/>
             <label>
@@ -60,6 +64,7 @@ export default function UpdateCustomer(){
             <br/>
             <input type="submit" value="Submit"/>
         </form>
+        <Link to="/newOrder">View All Employees</Link>
         </>
     );
  }
