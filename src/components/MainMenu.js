@@ -14,8 +14,8 @@ export default function MainMenu() {
             <button>View Orders</button>
         </Link>
         <br/>
-        <Link to="/employeeMenu">
-            <button>Employee Menu</button>
+        <Link to="/employeeMenu/viewEmployees">
+            <button>View Employees</button>
         </Link>
         </>
     )
