@@ -12,16 +12,20 @@ class EmployeeService {
         return axios.get(getAllEmployeesUrl);
     }
 
+    findEmployee(id) {
+        return axios.get(getAllEmployeesUrl + id);
+    }
+
     addEmployee(employee) {
         return axios.post(addEmployeeUrl, employee);
     }
 
-    updateEmployee() {
-
+    updateEmployee(employee) {
+        return axios.put(updateEmployeeUrl, employee)
     }
 
-    deleteEmployee() {
-
+    deactivateEmployee(employee) {
+        return axios.put(updateEmployeeUrl, employee)
     }
 
 }
