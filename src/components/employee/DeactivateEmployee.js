@@ -60,7 +60,7 @@ export default function UpdateEmployee() {
             <br/>
             <input type="submit" value="Submit"/>
         </form>
-        <Link to="/employeeMenu/viewEmployees">View All Employees</Link>
+        <Link to="/employeeMenu/viewEmployees">Back to Employee List</Link>
         </>
     );
 }
