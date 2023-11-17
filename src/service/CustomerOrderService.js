@@ -1,22 +1,22 @@
 import React from "react";
 import axios from 'axios';
 
-const getAllOrdersUrl = "http://localhost:8080/api/employees";
-const addOrderUrl = "http://localhost:8080/api/addEmployee";
-const updateOrderUrl = "http://localhost:8080/api/updateEmployee";
-const deleteOrderUrl = "http://localhost:8080/api/updateEmployee";
+const getAllOrdersUrl = "http://localhost:8080/api/customerOrder";
+const addOrderUrl = "http://localhost:8080/api/addCustomerOrder";
+const updateOrderUrl = "http://localhost:8080/api/updateCustomerOrder";
+const deleteOrderUrl = "http://localhost:8080/api/deleteCustomerOrder";
 
 class CustomerOrderService {
     
-    getAllEmployees() {
+    getAllOrders() {
         return axios.get(getAllOrdersUrl);
     }
 
-    findEmployee(id) {
+    findOrder(id) {
         return axios.get(getAllOrdersUrl + id);
     }
 
-    addEmployee(order) {
+    addOrder(order) {
         return axios.post(addOrderUrl, order);
     }
 

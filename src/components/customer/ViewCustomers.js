@@ -16,6 +16,10 @@ export default function ViewCustomers() {
     }, []);
 
     let navigate = useNavigate();
+    let handleSelect = (phone_number) => {
+        navigate('/newOrder/addOrder', {state : {phone_number}})
+    }
+
     let handleUpdate = (phone_number) => {
         navigate('/newOrder/updateCustomer', {state : {phone_number}})
     }
@@ -47,6 +51,9 @@ export default function ViewCustomers() {
                                 <td>
                                     <button onClick={()=>{handleUpdate(customers.phone_number)}}>Edit</button>
                                     <button onClick={()=>{handleDelete(customers.phone_number)}}>Delete</button>
+                                </td>
+                                <td>
+                                    <button onClick={()=>{handleSelect(customers.phone_number)}}></button>
                                 </td>
                             </tr>
                         )
