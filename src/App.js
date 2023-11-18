@@ -7,10 +7,10 @@ import DeactivateEmployee from './components/employee/DeactivateEmployee';
 import UpdateEmployee from './components/employee/UpdateEmployee';
 import MainMenu from './components/MainMenu';
 import ViewCustomers from './components/customer/ViewCustomers';
-import ViewOrders from './components/orders/ViewOrders';
+import ViewActiveOrders from './components/orders/ViewActiveOrders';
 import AddOrder from './components/orders/AddOrder';
 import CreateOrder from './components/orders/CreateOrder';
-import ViewAllOrders from './components/orders/ViewOrders';
+import ViewAllOrders from './components/orders/ViewActiveOrders';
 import UpdateOrder from './components/orders/UpdateOrder';
 import DeleteOrder from './components/orders/DeleteOrder';
 import AddCustomer from './components//customer/AddCustomer';
@@ -30,9 +30,8 @@ function App() {
       <Route path={"/newOrder/addOrder"} element={<AddOrder/>} exact={true}></Route>
       <Route path={"/newOrder/createOrder"} element={<CreateOrder/>} exact={true}></Route>
 
-      <Route path={"/viewOrders"} element={<ViewOrders/>} exact={true}></Route>
-      <Route path={"/viewOrders/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>
-      <Route path={"/addOrder"} element={<AddOrder/>} exact={true}></Route>
+      <Route path={"/viewActiveOrders"} element={<ViewActiveOrders/>} exact={true}></Route>
+      <Route path={"/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>
       <Route path={"/viewOrders/editOrder"} element={<UpdateOrder/>} exact={true}></Route>
       <Route path={"/viewOrders/deleteOrder"} element={<DeleteOrder/>} exact={true}></Route>
 

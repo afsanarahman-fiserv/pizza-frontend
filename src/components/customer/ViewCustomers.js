@@ -30,9 +30,11 @@ export default function ViewCustomers() {
 
     return(
         <>
+        <h3>All Customers</h3>
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>Phone Number</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -44,6 +46,9 @@ export default function ViewCustomers() {
                     state.customers.map((customers, i)=>{
                         return (
                             <tr>
+                                <td>
+                                    <button onClick={()=>{handleSelect(customers.phone_number)}}>Select</button>
+                                </td>
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.name}</td>
                                 <td>{customers.street_address}</td>
@@ -51,9 +56,6 @@ export default function ViewCustomers() {
                                 <td>
                                     <button onClick={()=>{handleUpdate(customers.phone_number)}}>Edit</button>
                                     <button onClick={()=>{handleDelete(customers.phone_number)}}>Delete</button>
-                                </td>
-                                <td>
-                                    <button onClick={()=>{handleSelect(customers.phone_number)}}></button>
                                 </td>
                             </tr>
                         )

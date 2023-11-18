@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import EmployeeService from "../../service/EmployeeService";
 
 export default function AddEmployee() {
@@ -11,11 +12,14 @@ export default function AddEmployee() {
     let handleRole = (e) => { setRole(e.target.value) }
     let handleStatus = (e) => { setStatus(e.target.value) }
 
+    let navigate = useNavigate();
+
     let handleSubmit = (e) => {
         e.preventDefault();
         let employee = {name : name, employee_role : employee_role, employee_status : employee_status}
         EmployeeService.addEmployee(employee).then(()=>{
             alert("Employee added successfully")
+            navigate('/employeeMenu/viewEmployees');
         }, ()=>{
             alert("Employee creation failed")
         });

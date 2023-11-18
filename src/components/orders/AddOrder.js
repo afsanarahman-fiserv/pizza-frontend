@@ -1,5 +1,7 @@
 import CustomerOrderService from "../../service/CustomerOrderService";
-import { useLocation, useNavigate } from "react-router-dom";
+import EmployeeService from "../../service/EmployeeService";
+import CustomerService from "../../service/CustomerService";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function AddOrder() {
@@ -9,14 +11,13 @@ export default function AddOrder() {
         name : '',
         street_address : '',
         zip_code : ''
-
     });
 
     useEffect(() =>{
-        CustomerOrderService.findCustomer(location.state.phone_number).then((response)=>{
+        CustomerService.findCustomer(location.state.phone_number).then((response)=>{
             setCustomer(response.data);
         }, ()=>{
-            // alert("Failed to find user");
+            alert(location.state.phone_number);
         });
     })
 
@@ -34,19 +35,23 @@ export default function AddOrder() {
 
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {phone_number : customer.phone_number, employee_id : employee_id, order_status : 'INCOMPLETE'}
+        let order = {phone_number : customer.phone_number, employee_id : employee_id, order_status : false}
         CustomerOrderService.addOrder(order).then(()=>{
-            navigate()
+            navigate('/newOrder/createOrder');
+            // navigate('/newOrder/createOrder', {state : order.order_id})
         }, ()=>{
-
+            alert("here");
+            navigate('/newOrder/createOrder');
         })
     }
 
     return(
         <>
+        <h3>Employee for Order</h3>
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Role</th>
@@ -58,19 +63,22 @@ export default function AddOrder() {
                     state.employees.map((employee, i)=>{
                         return (
                             <tr>
+                                <td>
+                                    <button onClick={()=>{handleSelect(employee.employee_id)}}>Select</button>
+                                </td>
                                 <td>{employee.employee_id}</td>
                                 <td>{employee.name}</td>
                                 <td>{employee.employee_role}</td>
                                 <td>{employee.employee_status}</td>
-                                <td>
-                                    <button onClick={()=>{handleSelect(employee.employee_id)}}>Select</button>
-                                </td>
                             </tr>
                         )
                     })
                 }
             </tbody>
         </table>
+        <Link to="/newOrder/addOrder">
+            <p>Back to Customer List</p>
+        </Link>
         </>
     )
 }

@@ -10,7 +10,7 @@ export default function MainMenu() {
             <button>New Order</button>
         </Link>
         <br/>
-        <Link to="/viewOrders">
+        <Link to="/viewActiveOrders">
             <button>View Orders</button>
         </Link>
         <br/>

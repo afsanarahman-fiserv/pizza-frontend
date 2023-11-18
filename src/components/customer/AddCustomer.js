@@ -17,7 +17,7 @@ export default function AddCustomers() {
         e.preventDefault();
         let customer = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code};
         CustomerService.addCustomer(customer).then(()=>{
-            alert(JSON.stringify(customer));
+            alert("New customer added");
         }, ()=>{
             alert("Customer creation failed");
         });
