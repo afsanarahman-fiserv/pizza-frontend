@@ -25,7 +25,7 @@ export default function ViewCustomers() {
     }
 
     let handleDelete = (phone_number) => {
-        navigate('/newOrder', {state : {phone_number}})
+        navigate('/newOrder/deleteCustomer', {state : {phone_number}})
     }
 
     return(
