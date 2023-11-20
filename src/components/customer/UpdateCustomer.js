@@ -17,7 +17,7 @@ export default function UpdateCustomer(){
         CustomerService.findCustomer(location.state.phone_number).then((response)=>{
             setCustomer(response.data);
         }, ()=>{
-            // alert("Failed to find user");
+            alert("Failed to find user");
         });
     })
 
@@ -34,7 +34,7 @@ export default function UpdateCustomer(){
     let handleSubmit = (e) => {
         e.preventDefault();
         let new_customers = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
-        CustomerService.updateCustomer(customers).then(()=>{
+        CustomerService.updateCustomer(new_customers).then(()=>{
             alert(JSON.stringify(new_customers))
             alert("Customer updated successfully")
         }, ()=>{

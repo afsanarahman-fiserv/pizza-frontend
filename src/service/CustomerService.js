@@ -6,7 +6,7 @@ const getAllCustomersUrl = "http://localhost:8080/api/customers";
 const getCustomerUrl = "http://localhost:8080/api/customers/"
 const addCustomerUrl = "http://localhost:8080/api/addCustomer";
 const updateCustomerUrl = "http://localhost:8080/api/updateCustomer";
-const deleteCustomerUrl = "http://localhost:8080/api/deleteCustomer";
+const deleteCustomerUrl = "http://localhost:8080/api/deleteCustomer/";
 
 
 class CustomerService {
@@ -25,8 +25,8 @@ class CustomerService {
         return axios.put(updateCustomerUrl, customer)
     }
 
-    deleteCustomer(customer) {
-        return axios.delete(deleteCustomerUrl, customer)
+    deleteCustomer(phone_number) {
+        return axios.delete(deleteCustomerUrl + phone_number)
     }
 }
 
