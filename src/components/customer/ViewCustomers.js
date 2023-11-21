@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CustomerService from "../../service/CustomerService"
+import { Table } from "react-bootstrap"; 
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function ViewCustomers() {
@@ -31,7 +32,8 @@ export default function ViewCustomers() {
     return(
         <>
         <h3>All Customers</h3>
-        <table>
+        <div className= "table-wrapper">
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th></th>
@@ -62,13 +64,14 @@ export default function ViewCustomers() {
                     })
                 }
             </tbody>
-        </table>
+        </Table>
         <button>
             <Link to="/newOrder/newCustomer">Add New Customer</Link>
         </button>
         <Link to="/">
             <p>Back to Main Menu</p>
         </Link>
+        </div>
         </>
     );
 }

@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom'
 
 export default function MainMenu() {
     return(
-        <>
-        <h2>Main Menu</h2>
-        <Link to="/newOrder">
-            <button>New Order</button>
-        </Link>
-        <br/>
-        <Link to="/viewActiveOrders">
-            <button>View Orders</button>
-        </Link>
-        <br/>
-        <Link to="/employeeMenu/viewEmployees">
-            <button>View Employees</button>
-        </Link>
-        </>
+        <div className ="App">
+            <header className="App-header">
+            <Link className="edit-link" to="/newOrder">
+                <button>New Order</button>
+            </Link>
+            <br/>
+            <Link className="edit-link" to="/viewActiveOrders">
+                <button>View Orders</button>
+            </Link>
+            <br/>
+            <Link className="edit-link" to="/employeeMenu/viewEmployees">
+                <button>View Employees</button>
+            </Link>
+            </header>
+        </div>
     )
 }
