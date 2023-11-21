@@ -25,12 +25,13 @@ function App() {
         <Routes>
           <Route path={"/"} element={<MainMenu/>} exact={true}></Route>
 
-          <Route path={"/newOrder"} element={<ViewCustomers/>} exact={true}></Route>
-          <Route path={"/newOrder/newCustomer"} element={<AddCustomer/>} exact={true}></Route>
-          <Route path={"/newOrder/updateCustomer"} element={<UpdateCustomer/>} exact={true}></Route>
-          <Route path={"/newOrder/deleteCustomer"} element={<DeleteCustomer/>} exact={true}></Route>
-          <Route path={"/newOrder/addOrder"} element={<AddOrder/>} exact={true}></Route>
-          <Route path={"/newOrder/createOrder"} element={<CreateOrder/>} exact={true}></Route>
+          <Route path={"/viewCustomers"} element={<ViewCustomers/>} exact={true}></Route>
+          <Route path={"/viewCustomers/newCustomer"} element={<AddCustomer/>} exact={true}></Route>
+          <Route path={"/viewCustomers/updateCustomer"} element={<UpdateCustomer/>} exact={true}></Route>
+          <Route path={"/viewCustomers/deleteCustomer"} element={<DeleteCustomer/>} exact={true}></Route>
+          <Route path={"/viewCustomers/addOrder"} element={<AddOrder/>} exact={true}></Route>
+
+
 
           <Route path={"/viewActiveOrders"} element={<ViewActiveOrders/>} exact={true}></Route>
           <Route path={"/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>

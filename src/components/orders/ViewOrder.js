@@ -1,5 +1,8 @@
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import CustomerService from "../../service/CustomerService"
+import CustomerOrderService from "../../service/CustomerOrderService"
+import EmployeeService from "../../service/EmployeeService";
 
 export default function ViewOrder() {
     let location  = useLocation();
