@@ -45,7 +45,7 @@ export default function AddCustomers() {
             <br/>
             <input type="submit" value="Submit"/>
         </form>
-        <Link to="/newOrder">View All Customers</Link>
+        <Link to="/viewCustomers">View All Customers</Link>
         </>
     );
 }

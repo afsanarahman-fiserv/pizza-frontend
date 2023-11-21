@@ -18,15 +18,15 @@ export default function ViewCustomers() {
 
     let navigate = useNavigate();
     let handleSelect = (phone_number) => {
-        navigate('/newOrder/addOrder', {state : {phone_number}})
+        navigate('/viewCustomers/addOrder', {state : {phone_number}})
     }
 
     let handleUpdate = (phone_number) => {
-        navigate('/newOrder/updateCustomer', {state : {phone_number}})
+        navigate('/viewCustomers/updateCustomer', {state : {phone_number}})
     }
 
     let handleDelete = (phone_number) => {
-        navigate('/newOrder/deleteCustomer', {state : {phone_number}})
+        navigate('/viewCustomers/deleteCustomer', {state : {phone_number}})
     }
 
     return(
@@ -36,7 +36,6 @@ export default function ViewCustomers() {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th></th>
                     <th>Phone Number</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -64,7 +63,7 @@ export default function ViewCustomers() {
             </tbody>
         </Table>
         <button>
-            <Link to="/newOrder/newCustomer">Add New Customer</Link>
+            <Link to="/viewCustomers/newCustomer">Add New Customer</Link>
         </button>
         <Link to="/">
             <p>Back to Main Menu</p>

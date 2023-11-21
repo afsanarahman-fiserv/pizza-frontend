@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import EmployeeService from "../../service/EmployeeService"
 import { Link, useNavigate } from 'react-router-dom'
+import { Table } from "react-bootstrap"; 
 
 export default function ViewEmployees() {
     let [state, setState] = useState({
@@ -26,7 +27,9 @@ export default function ViewEmployees() {
 
     return(
         <>
-        <table>
+        <h3>All Employees</h3>
+        <div className= "table-wrapper">
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -53,13 +56,14 @@ export default function ViewEmployees() {
                     })
                 }
             </tbody>
-        </table>
+        </Table>
         <button>
             <Link to="/employeeMenu/addEmployee">Add New Employee</Link>
         </button>
         <Link to="/">
             <p>Back to Main Menu</p>
         </Link>
+        </div>
         </>
     );
 }
