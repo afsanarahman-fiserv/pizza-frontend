@@ -47,10 +47,8 @@ export default function ViewCustomers() {
                 {
                     state.customers.map((customers, i)=>{
                         return (
-                            <tr>
-                                <td>
-                                    <button onClick={()=>{handleSelect(customers.phone_number)}}>Select</button>
-                                </td>
+                            <tr onClick={()=>{handleSelect(customers.phone_number)}}>
+                                
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.name}</td>
                                 <td>{customers.street_address}</td>

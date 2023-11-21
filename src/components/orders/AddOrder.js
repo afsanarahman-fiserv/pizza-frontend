@@ -58,10 +58,8 @@ export default function AddOrder() {
                 {
                     empState.employees.map((employee, i)=>{
                         return (
-                            <tr>
-                                <td>
-                                    <button onClick={()=>{handleSelect(employee.employee_id)}}>Select</button>
-                                </td>
+                            <tr onClick={()=>{handleSelect(employee.employee_id)}}>
+                                
                                 <td>{employee.employee_id}</td>
                                 <td>{employee.name}</td>
                                 <td>{employee.employee_role}</td>
