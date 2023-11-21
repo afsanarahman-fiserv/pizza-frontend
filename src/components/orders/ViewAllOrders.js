@@ -4,15 +4,27 @@ import CustomerService from "../../service/CustomerService"
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function ViewAllOrders() {
-    let [state, setState] = useState({
-        orders: [],
-        customer: [],
-        employee : []
+    let [ordersState, setOrdersState] = useState({
+        orders: []
+    });
+
+    let [customer, setCustState] = useState({
+        phone_number : '',
+        name : '',
+        street_address : '',
+        zip_code : ''
+    });
+
+    let [employee, setEmpState] = useState({
+        employee_id : '',
+        name : '',
+        employee_role : '',
+        employee_status : ''
     });
 
     useEffect(() => {
         CustomerOrderService.getAllCustomers().then((response)=>{
-            setState(()=>({
+            setOrdersState(()=>({
                 orders : response.data
             }));
         }, ()=>{});
@@ -20,18 +32,18 @@ export default function ViewAllOrders() {
 
     let getCustomerDetails = (phone_number) => {
         CustomerService.findCustomer(phone_number).then((response)=>{
-            setState(()=>({
-                customer : response.data
-            }));
-        }, ()=>{});
+            setCustState(response.data);
+        }, ()=>{
+            alert("Customer not found");
+        });
     }
 
     let getEmployeeDetails = (employee_id) => {
         EmployeeService.findEmployee(employee_id).then((response)=>{
-            setState(()=>({
-                employee : response.data
-            }));
-        }, ()=>{});
+            setEmpState(response.data);
+        }, ()=>{
+            alert("Employee not found");
+        });
     }
 
     let navigate = useNavigate();
@@ -39,21 +51,13 @@ export default function ViewAllOrders() {
         navigate('/newOrder/viewOrder', {state : {order_id}})
     }
 
-    // let handleUpdate = (phone_number) => {
-    //     navigate('/newOrder/updateCustomer', {state : {phone_number}})
-    // }
-
-    // let handleDelete = (phone_number) => {
-    //     navigate('/newOrder', {state : {phone_number}})
-    // }
-
     return(
         <>
         <h3>All Orders</h3>
         {
-            state.orders.map((order) => {
-                customer = getCustomerDetails(order.phone_number);
-                employee = getEmployeeDetails(order.employee_id);
+            ordersState.orders.map((order) => {
+                getCustomerDetails(order.phone_number);
+                getEmployeeDetails(order.employee_id);
                 return(
                     <div onClick={handleSelect(order.order_id)}>
                         <h4>Order Details</h4>
