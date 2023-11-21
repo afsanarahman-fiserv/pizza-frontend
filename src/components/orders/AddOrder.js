@@ -1,30 +1,15 @@
 import CustomerOrderService from "../../service/CustomerOrderService";
 import EmployeeService from "../../service/EmployeeService";
-import CustomerService from "../../service/CustomerService";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function AddOrder() {
     let location  = useLocation();
-    let [customer, setCustomer] = useState({
-        phone_number : '',
-        name : '',
-        street_address : '',
-        zip_code : ''
-    });
+    let customer = location.state.phone_number;
 
-    useEffect(() =>{
-        CustomerService.findCustomer(location.state.phone_number).then((response)=>{
-            setCustomer(response.data);
-        }, ()=>{
-            alert(location.state.phone_number);
-        });
-    })
-
-    let [state, setState] = useState({
+    let [empState, setState] = useState({
         employees: []
     });
-
     useEffect(() => {
         EmployeeService.getAllEmployees().then((response)=>{
             setState(()=>({
@@ -33,12 +18,23 @@ export default function AddOrder() {
         }, ()=>{});
     }, []);
 
+    let [orderState, setOrderState] = useState({
+        orders : []
+    });
+    useEffect(() => {
+        CustomerOrderService.getAllOrders().then((response)=>{
+            setOrderState(()=>({
+                orders : response.data
+            }));
+        }, ()=>{});
+    }, []);
+    let num = orderState.orders.length + 1;
+
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {phone_number : customer.phone_number, employee_id : employee_id, order_status : false}
+        let order = {phone_number : customer, employee_id : employee_id, order_status : false}
         CustomerOrderService.addOrder(order).then(()=>{
-            navigate('/newOrder/createOrder');
-            // navigate('/newOrder/createOrder', {state : order.order_id})
+            navigate('/newOrder/createOrder', {state : num})
         }, ()=>{
             alert("here");
             navigate('/newOrder/createOrder');
@@ -60,7 +56,7 @@ export default function AddOrder() {
             </thead>
             <tbody>
                 {
-                    state.employees.map((employee, i)=>{
+                    empState.employees.map((employee, i)=>{
                         return (
                             <tr>
                                 <td>

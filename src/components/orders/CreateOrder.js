@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function CreateOrder() {
+    let location  = useLocation();
+    let order_id = location.state.num;
+
     const getAllProductsUrl = "http://localhost:8080/api/getAllProducts";
     let [state, setState] = useState({
         products: []
@@ -16,18 +19,12 @@ export default function CreateOrder() {
         }, ()=>{});
     }, []);
 
+    let details = state.products.map((product) => {
+        let detail = {order_id : order_id, product_id : product.product_id, price_charged : product.price, quantity : 0}
+    })
+
     let handleSubmit = (e) => {
         e.preventDefault();
-    }
-
-    let handlePlus = () => {
-        // if(quantity > 0) {
-        //     quantity += 1;
-        // }
-    }
-
-    let handleMinus = () => {
-        // quantity -= 1;
     }
 
     return(
@@ -54,7 +51,9 @@ export default function CreateOrder() {
                                 <td>{product.size}</td>
                                 <td>{product.price}</td>
                                 <td>
-                                    <input type="number" min="0" placeholder='0'></input>
+                                    <label>
+                                        <input type="number" min="0" placeholder='0' ></input>
+                                    </label>
                                 </td>
                             </tr>
                         )
