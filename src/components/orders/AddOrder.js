@@ -32,12 +32,13 @@ export default function AddOrder() {
 
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {phone_number : customer, employee_id : employee_id, order_status : false}
+        let order = {employee_id : parseInt(employee_id), phone_number : parseFloat(customer)}
+        console.log(order);
         CustomerOrderService.addOrder(order).then(()=>{
-            navigate('/newOrder/createOrder', {state : num})
-        }, ()=>{
-            alert("here");
-            navigate('/newOrder/createOrder');
+            navigate('/newOrder/createOrder', {state : {num}})
+        }, (response)=>{
+            alert(JSON.stringify(order));
+            navigate('/newOrder/createOrder', {state : {num}});
         })
     }
 

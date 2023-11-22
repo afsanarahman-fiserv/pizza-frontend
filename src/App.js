@@ -30,8 +30,7 @@ function App() {
           <Route path={"/viewCustomers/updateCustomer"} element={<UpdateCustomer/>} exact={true}></Route>
           <Route path={"/viewCustomers/deleteCustomer"} element={<DeleteCustomer/>} exact={true}></Route>
           <Route path={"/viewCustomers/addOrder"} element={<AddOrder/>} exact={true}></Route>
-
-
+          <Route path={"/newOrder/createOrder"} element={<CreateOrder/>} exact={true}></Route>
 
           <Route path={"/viewActiveOrders"} element={<ViewActiveOrders/>} exact={true}></Route>
           <Route path={"/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>

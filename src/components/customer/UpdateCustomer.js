@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CustomerService from "../../service/CustomerService"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function UpdateCustomer(){
     let location  = useLocation();
@@ -31,14 +31,14 @@ export default function UpdateCustomer(){
     let handleAddress = (e) => { setAddress(e.target.value) }
     let handleZip = (e) => { setZip_Code(e.target.value) }
 
+    let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
         let new_customers = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
         CustomerService.updateCustomer(new_customers).then(()=>{
-            alert(JSON.stringify(new_customers))
             alert("Customer updated successfully")
+            navigate("/viewCustomers");
         }, ()=>{
-            alert(JSON.stringify(new_customers))
             alert("Customer update failed")
         });
     }

@@ -24,7 +24,7 @@ export default function ViewActiveOrders() {
     });
 
     useEffect(() => {
-        CustomerOrderService.getAllCustomers().then((response)=>{
+        CustomerOrderService.getAllOrders().then((response)=>{
             setOrdersState(()=>({
                 orders : response.data
             }));

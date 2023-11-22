@@ -11,7 +11,7 @@ export default function DeleteCustomer(){
         CustomerService.deleteCustomer(location.state.phone_number).then(()=>{
             navigate({pathname : "/viewCustomers"})
         }, ()=>{
-            alert(location.state.phone_number)
+            alert("Customer deletion failed")
         });
     })
     
