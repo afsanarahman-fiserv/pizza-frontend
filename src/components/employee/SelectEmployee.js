@@ -2,8 +2,9 @@ import CustomerOrderService from "../../service/CustomerOrderService";
 import EmployeeService from "../../service/EmployeeService";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap"; 
 
-export default function AddOrder() {
+export default function SelectEmployee() {
     let location  = useLocation();
     let customer = location.state.phone_number;
 
@@ -32,7 +33,14 @@ export default function AddOrder() {
 
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {employee_id : parseInt(employee_id), phone_number : parseFloat(customer)}
+        let order = {
+            employee : {
+                employee_id : employee_id
+            },
+            customer : {
+                phone_number : customer
+            }
+        }
         console.log(order);
         CustomerOrderService.addOrder(order).then(()=>{
             navigate('/newOrder/createOrder', {state : {num}})
@@ -44,11 +52,10 @@ export default function AddOrder() {
 
     return(
         <>
-        <h3>Employee for Order</h3>
-        <table>
+        <h3>Select an Employee</h3>
+        <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Role</th>
@@ -70,7 +77,7 @@ export default function AddOrder() {
                     })
                 }
             </tbody>
-        </table>
+        </Table>
         <Link to="/newOrder/addOrder">
             <p>Back to Customer List</p>
         </Link>

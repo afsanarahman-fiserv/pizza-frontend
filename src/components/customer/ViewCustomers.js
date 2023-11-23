@@ -18,7 +18,7 @@ export default function ViewCustomers() {
 
     let navigate = useNavigate();
     let handleSelect = (phone_number) => {
-        navigate('/viewCustomers/addOrder', {state : {phone_number}})
+        navigate('/newOrder/selectEmployee', {state : {phone_number}})
     }
 
     let handleUpdate = (phone_number) => {
@@ -31,7 +31,7 @@ export default function ViewCustomers() {
 
     return(
         <>
-        <h3>All Customers</h3>
+        <h3>Select a Customer</h3>
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
