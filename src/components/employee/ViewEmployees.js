@@ -26,8 +26,9 @@ export default function ViewEmployees() {
     }
 
     return(
-        <>
-        <h3>All Employees</h3>
+
+        <div className ="App">
+            <h3>All Employees</h3>
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -36,6 +37,7 @@ export default function ViewEmployees() {
                     <th>Name</th>
                     <th>Role</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +66,6 @@ export default function ViewEmployees() {
             <p>Back to Main Menu</p>
         </Link>
         </div>
-        </>
+        </div>
     );
 }

@@ -9,9 +9,10 @@ export default function DeleteCustomer(){
 
     useEffect(() =>{
         CustomerService.deleteCustomer(location.state.phone_number).then(()=>{
+            alert("Customer deleted")
             navigate({pathname : "/viewCustomers"})
         }, ()=>{
-            alert(location.state.phone_number)
+            
         });
     })
     
