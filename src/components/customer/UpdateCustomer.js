@@ -48,7 +48,7 @@ export default function UpdateCustomer(){
         <h3>Editing Customer</h3>
         <form onSubmit={handleSubmit}>
             <label>
-                Phone Number: <input onChange={handleNumber} type="text" value={phone_number} placeholder={customers.phone_number} />
+                Phone Number: <input onChange={handleNumber} type="text" value={phone_number} placeholder={customers.phone_number} disabled/>
             </label>
             <br/>
             <label>

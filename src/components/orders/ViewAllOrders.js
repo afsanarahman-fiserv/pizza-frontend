@@ -49,7 +49,7 @@ export default function ViewAllOrders() {
                 }, ()=>{});
                 if(order.order_status) {
                     return(
-                        <div>
+                        <div onClick={()=>{handleSelect(order.order_id)}}>
                             <h4>Order #{order.order_id}</h4>
                             <h4>COMPLETE</h4>
                             <h4>Customer</h4>

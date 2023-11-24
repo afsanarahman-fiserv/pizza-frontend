@@ -19,7 +19,7 @@ export default function ViewOrder() {
         CustomerOrderService.findOrder(location.state.order_id).then((response)=>{
             setOrder(response.data);
         }, ()=>{
-            // alert("Failed to find user");
+            alert("Failed to find order");
         });
     })
 
@@ -109,8 +109,8 @@ export default function ViewOrder() {
                 <p>ID: {employee.employee_id}</p>
                 <p>Name: {employee.name}</p>
                 <h3>STATUS: ACTIVE</h3>
-                <button onClick={markComplete(order.order_id)}>Mark Complete</button>
-                <button onClick={editDetails(order.order_id)}>Edit Order</button>
+                <button onClick={()=>{markComplete(order.order_id)}}>Mark Complete</button>
+                <button onClick={()=>{editDetails(order.order_id)}}>Edit Order</button>
             </div>
             </>
         )

@@ -36,6 +36,7 @@ export default function ViewCustomers() {
         <Table striped bordered hover>
             <thead>
                 <tr>
+                    <td></td>
                     <th>Phone Number</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -46,8 +47,10 @@ export default function ViewCustomers() {
                 {
                     state.customers.map((customers, i)=>{
                         return (
-                            <tr onClick={()=>{handleSelect(customers.phone_number)}}>
-                                
+                            <tr>
+                                <td>
+                                    <button onClick={()=>{handleSelect(customers.phone_number)}}>Select</button>
+                                </td>
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.name}</td>
                                 <td>{customers.street_address}</td>

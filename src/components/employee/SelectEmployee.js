@@ -29,7 +29,10 @@ export default function SelectEmployee() {
             }));
         }, ()=>{});
     }, []);
-    let num = orderState.orders.length + 1;
+    let num = 1;
+    if(orderState.orders.length != 0) {
+        num = orderState.orders[orderState.orders.length-1].order_id + 1;
+    }
 
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
@@ -56,6 +59,7 @@ export default function SelectEmployee() {
         <Table striped bordered hover>
             <thead>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Role</th>
@@ -66,8 +70,10 @@ export default function SelectEmployee() {
                 {
                     empState.employees.map((employee, i)=>{
                         return (
-                            <tr onClick={()=>{handleSelect(employee.employee_id)}}>
-                                
+                            <tr>
+                                <td>
+                                    <button onClick={()=>{handleSelect(employee.employee_id)}}>Select</button>
+                                </td>
                                 <td>{employee.employee_id}</td>
                                 <td>{employee.name}</td>
                                 <td>{employee.employee_role}</td>

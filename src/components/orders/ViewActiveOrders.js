@@ -64,7 +64,7 @@ export default function ViewActiveOrders() {
         {
             ordersState.orders.map((order) => {
                 if(!order.order_status) {
-                    CustomerService.findCustomer(order.customer.phone_number).then((response) => {
+                    CustomerService.findCustomer(order.customer.phone_number).then((response)=>{
                         setCustState(response.data);
                     }, ()=>{});
                     EmployeeService.findEmployee(order.employee.employee_id).then((response)=>{
@@ -74,16 +74,22 @@ export default function ViewActiveOrders() {
                         <div>
                             <h4>Order #{order.order_id}</h4>
                             <h4>Customer</h4>
+                            <button>
+                                Edit Customer
+                            </button>
                             <p>Name: {customer.name}</p>
                             <p>Phone: {customer.phone_number}</p>
                             <p>Street Address: {customer.street_address}</p>
                             <p>ZIP: {customer.zip_code}</p>
                             <h4>Employee</h4>
+                            <button>
+                                Change Employee
+                            </button>
                             <p>Name: {employee.name}</p>
                             <p>ID: {employee.employee_id}</p>
-                            <button onClick={markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}>Mark Complete</button>
-                            <button onClick={editOrder(order.order_id, order.customer.phone_number, order.employee.employee_id)}>Edit Order</button>
-                            <button onClick={deleteOrder(order.order_id, order.customer.phone_number, order.employee.employee_id)}>Delete Order</button>
+                            <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
+                            <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
+                            <button onClick={()=>{deleteOrder(order.order_id)}}>Delete Order</button>
                         </div>
                     )
                 }
