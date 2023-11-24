@@ -18,7 +18,7 @@ export default function ViewCustomers() {
 
     let navigate = useNavigate();
     let handleSelect = (phone_number) => {
-        navigate('/viewCustomers/addOrder', {state : {phone_number}})
+        navigate('/newOrder/selectEmployee', {state : {phone_number}})
     }
 
     let handleUpdate = (phone_number) => {
@@ -31,11 +31,12 @@ export default function ViewCustomers() {
 
     return(
         <>
-        <h3>All Customers</h3>
+        <h3>Select a Customer</h3>
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
                 <tr>
+                    <td></td>
                     <th>Phone Number</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -47,6 +48,9 @@ export default function ViewCustomers() {
                     state.customers.map((customers, i)=>{
                         return (
                             <tr>
+                                <td>
+                                    <button onClick={()=>{handleSelect(customers.phone_number)}}>Select</button>
+                                </td>
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.name}</td>
                                 <td>{customers.street_address}</td>

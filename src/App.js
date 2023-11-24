@@ -8,14 +8,15 @@ import UpdateEmployee from './components/employee/UpdateEmployee';
 import MainMenu from './components/MainMenu';
 import ViewCustomers from './components/customer/ViewCustomers';
 import ViewActiveOrders from './components/orders/ViewActiveOrders';
-import AddOrder from './components/orders/AddOrder';
+import SelectEmployee from './components/employee/SelectEmployee';
 import CreateOrder from './components/orders/CreateOrder';
-import ViewAllOrders from './components/orders/ViewActiveOrders';
+import ViewAllOrders from './components/orders/ViewAllOrders';
 import UpdateOrder from './components/orders/UpdateOrder';
 import DeleteOrder from './components/orders/DeleteOrder';
 import AddCustomer from './components//customer/AddCustomer';
 import UpdateCustomer from './components/customer/UpdateCustomer';
 import DeleteCustomer from './components/customer/DeleteCustomer';
+import ViewOrder from './components/orders/ViewOrder';
 
 function App() {
   return (
@@ -29,12 +30,12 @@ function App() {
           <Route path={"/viewCustomers/newCustomer"} element={<AddCustomer/>} exact={true}></Route>
           <Route path={"/viewCustomers/updateCustomer"} element={<UpdateCustomer/>} exact={true}></Route>
           <Route path={"/viewCustomers/deleteCustomer"} element={<DeleteCustomer/>} exact={true}></Route>
-          <Route path={"/viewCustomers/addOrder"} element={<AddOrder/>} exact={true}></Route>
-
-
+          <Route path={"/newOrder/selectEmployee"} element={<SelectEmployee/>} exact={true}></Route>
+          <Route path={"/newOrder/createOrder"} element={<CreateOrder/>} exact={true}></Route>
 
           <Route path={"/viewActiveOrders"} element={<ViewActiveOrders/>} exact={true}></Route>
           <Route path={"/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>
+          <Route path={"/viewOrders/viewOrder"} element={<ViewOrder/>} exact={true}></Route>
           <Route path={"/viewOrders/editOrder"} element={<UpdateOrder/>} exact={true}></Route>
           <Route path={"/viewOrders/deleteOrder"} element={<DeleteOrder/>} exact={true}></Route>
 

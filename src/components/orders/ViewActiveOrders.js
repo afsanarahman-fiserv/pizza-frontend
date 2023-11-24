@@ -3,53 +3,47 @@ import { useState, useEffect } from "react";
 import CustomerOrderService from "../../service/CustomerOrderService";
 import CustomerService from "../../service/CustomerService";
 import EmployeeService from "../../service/EmployeeService";
+import GetCustomer from "../customer/GetCustomer";
+import GetEmployee from "../employee/GetEmployee";
 
 export default function ViewActiveOrders() {
     let [ordersState, setOrdersState] = useState({
         orders: []
     });
 
-    let [customer, setCustState] = useState({
-        phone_number : '',
-        name : '',
-        street_address : '',
-        zip_code : ''
-    });
-
-    let [employee, setEmpState] = useState({
-        employee_id : '',
-        name : '',
-        employee_role : '',
-        employee_status : ''
-    });
-
     useEffect(() => {
-        CustomerOrderService.getAllCustomers().then((response)=>{
+        CustomerOrderService.getAllOrders().then((response)=>{
             setOrdersState(()=>({
                 orders : response.data
             }));
-        }, ()=>{});
+        }, ()=>{
+            alert("Failed to find orders");
+        });
     }, []);
 
-    let getCustomerDetails = (phone_number) => {
-        CustomerService.findCustomer(phone_number).then((response)=>{
-            setCustState(response.data);
-        }, ()=>{
-            alert("Customer not found");
-        });
-    }
-
-    let getEmployeeDetails = (employee_id) => {
-        EmployeeService.findEmployee(employee_id).then((response)=>{
-            setEmpState(response.data);
-        }, ()=>{
-            alert("Employee not found");
-        });
-    }
-
     let navigate = useNavigate();
-    let handleSelect = (order_id) => {
-        navigate('/newOrder/viewOrder', {state : {order_id}})
+    let markComplete = (order_id, phone_number, employee_id) => {
+        let new_order = {
+            order_id : order_id,
+            customer : {
+                phone_number : phone_number
+            }, 
+            employee : {
+                employee_id : employee_id
+            },
+            order_status : true
+        }
+        CustomerOrderService.updateOrder(new_order).then(()=>{
+            alert("Order marked complete");
+        }, ()=>{
+            alert("Order update failed");
+        })
+    }
+    let editOrder = (order_id) => {
+        navigate("/viewOrders/editOrder", {state : {order_id}});
+    }
+    let deleteOrder = (order_id) => {
+        navigate("/viewOrders/deleteOrder", {state : {order_id}});
     }
 
     return(
@@ -57,25 +51,25 @@ export default function ViewActiveOrders() {
         <h3>Active Orders</h3>
         {
             ordersState.orders.map((order) => {
-                getCustomerDetails(order.phone_number);
-                getEmployeeDetails(order.employee_id);
-                return(
-                    <div onClick={handleSelect(order.order_id)}>
-                        <h4>Order Details</h4>
-                        <h4>Customer</h4>
-                        <p>Name: {customer.name}</p>
-                        <p>Phone: {customer.phone_number}</p>
-                        <p>Street Address: {customer.street_address}</p>
-                        <p>ZIP: {customer.zip_code}</p>
-                        <h4>Employee</h4>
-                        <p>Name: {employee.name}</p>
-                        <p>ID: {employee.employee_id}</p>
-                    </div>
-                )
+                if(!order.order_status) {
+                    return(
+                        <div>
+                            <h4>Order #{order.order_id}</h4>
+                            <GetCustomer phone_number={order.customer.phone_number}/>
+                            <GetEmployee employee_id={order.employee.employee_id}/>
+                            <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
+                            <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
+                            <button onClick={()=>{deleteOrder(order.order_id)}}>Delete Order</button>
+                        </div>
+                    )
+                }
             })
         }
         <Link to="/viewAllOrders">
             <p>View All Orders</p>
+        </Link>
+        <Link to="/">
+            <p>Back to Main Menu</p>
         </Link>
         </>
     )

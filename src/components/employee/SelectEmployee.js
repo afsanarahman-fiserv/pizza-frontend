@@ -2,8 +2,9 @@ import CustomerOrderService from "../../service/CustomerOrderService";
 import EmployeeService from "../../service/EmployeeService";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap"; 
 
-export default function AddOrder() {
+export default function SelectEmployee() {
     let location  = useLocation();
     let customer = location.state.phone_number;
 
@@ -28,23 +29,34 @@ export default function AddOrder() {
             }));
         }, ()=>{});
     }, []);
-    let num = orderState.orders.length + 1;
+    let num = 1;
+    if(orderState.orders.length != 0) {
+        num = orderState.orders[orderState.orders.length-1].order_id + 1;
+    }
 
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {phone_number : customer, employee_id : employee_id, order_status : false}
+        let order = {
+            employee : {
+                employee_id : employee_id
+            },
+            customer : {
+                phone_number : customer
+            }
+        }
+        console.log(order);
         CustomerOrderService.addOrder(order).then(()=>{
-            navigate('/newOrder/createOrder', {state : num})
-        }, ()=>{
-            alert("here");
-            navigate('/newOrder/createOrder');
+            navigate('/newOrder/createOrder', {state : {num}})
+        }, (response)=>{
+            alert(JSON.stringify(order));
+            navigate('/newOrder/createOrder', {state : {num}});
         })
     }
 
     return(
         <>
-        <h3>Employee for Order</h3>
-        <table>
+        <h3>Select an Employee</h3>
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th></th>
@@ -71,7 +83,7 @@ export default function AddOrder() {
                     })
                 }
             </tbody>
-        </table>
+        </Table>
         <Link to="/newOrder/addOrder">
             <p>Back to Customer List</p>
         </Link>

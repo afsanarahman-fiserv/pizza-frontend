@@ -62,10 +62,10 @@
   padding: 2px 2px; 
   font-size: 30; 
   line-height: normal; 
-  border-radius: 0.2rem; 
+  border-radius: 0.1rem; 
   color: #fff; 
-  background-color: #07d0eb; 
-  border-color: #07d0eb; 
+  background-color: #b8b5b5; 
+  border-color: #000809; 
   margin-right: 10px; 
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@
   
 .edit-link:hover { 
   text-decoration: none; 
-  color: #ffffff; 
+  color: #888585; 
 } 
   
 /* Chrome, Safari, Edge, Opera */

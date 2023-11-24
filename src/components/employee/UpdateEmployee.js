@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import EmployeeService from "../../service/EmployeeService";
 
 export default function UpdateEmployee() {
@@ -28,11 +28,13 @@ export default function UpdateEmployee() {
     let handleName = (e) => { setName(e.target.value) }
     let handleRole = (e) => { setRole(e.target.value) }
 
+    let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
         let new_employee = {employee_id : employee.employee_id, name : name, employee_role : employee_role, employee_status : employee.employee_status}
         EmployeeService.updateEmployee(new_employee).then(()=>{
-            alert(JSON.stringify(new_employee))
+            alert("Employee updated successfully")
+            navigate("/employeeMenu/viewEmployees");
         }, ()=>{
             alert("Employee update failed")
         });

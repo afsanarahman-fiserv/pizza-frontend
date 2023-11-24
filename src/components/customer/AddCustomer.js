@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import CustomerService from "../../service/CustomerService"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function AddCustomers() {
     let [phone_number, setPhone_Number] = useState('');
@@ -13,11 +13,13 @@ export default function AddCustomers() {
     let handleAddress = (e) => { setAddress(e.target.value) }
     let handleZip = (e) => { setZip_Code(e.target.value) }
 
+    let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
         let customer = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code};
         CustomerService.addCustomer(customer).then(()=>{
             alert("New customer added");
+            navigate("/viewCustomers");
         }, ()=>{
             alert("Customer creation failed");
         });
