@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
-import CustomerService from "../../service/CustomerService"
 import CustomerOrderService from "../../service/CustomerOrderService"
-import EmployeeService from "../../service/EmployeeService";
+import GetCustomer from "../customer/GetCustomer";
+import GetEmployee from "../employee/GetEmployee";
 
 export default function ViewOrder() {
     let location  = useLocation();
@@ -26,36 +26,6 @@ export default function ViewOrder() {
     let [details, setDetailsState] = useState({
         details: []
     });
-
-    let [customer, setCustomer] = useState({
-        phone_number : '',
-        name : '',
-        street_address : '',
-        zip_code : ''
-    });
-
-    useEffect(()=>{
-        CustomerService.findCustomer(order.phone_number).then((response)=>{
-            setCustomer(response.data);
-        }, ()=>{
-            // alert("Failed to find user");
-        });
-    })
-
-    let [employee, setEmployee] = useState({
-        employee_id : '',
-        name : '',
-        employee_role : '',
-        employee_status : ''
-    });
-
-    useEffect(()=>{
-        EmployeeService.findEmployee(order.employee_id).then((response)=>{
-            setEmployee(response.data);
-        }, ()=>{
-            // alert("Failed to find user");
-        });
-    })
 
     let navigate = useNavigate();
     let markComplete = () => {
@@ -82,14 +52,8 @@ export default function ViewOrder() {
             <div>
                 <h3>Order Details</h3>
                 <p>Time Completed: {order.timestamp}</p>
-                <h3>Customer Info</h3>
-                <p>Name: {customer.name}</p>
-                <p>Phone: {customer.phone_number}</p>
-                <p>Address: {customer.street_address}</p>
-                <p>ZIP: {customer.zip_code}</p>
-                <h3>Employee</h3>
-                <p>ID: {employee.employee_id}</p>
-                <p>Name: {employee.name}</p>
+                <GetCustomer phone_number={order.customer.phone_number}/>
+                <GetEmployee employee_id={order.employee.employee_id}/>
                 <h3>STATUS: Complete</h3>
             </div>
             </>
@@ -100,14 +64,8 @@ export default function ViewOrder() {
             <div>
                 <h3>Order Details</h3>
                 <p>Time Placed: {order.timestamp}</p>
-                <h3>Customer Info</h3>
-                <p>Name: {customer.name}</p>
-                <p>Phone: {customer.phone_number}</p>
-                <p>Address: {customer.street_address}</p>
-                <p>ZIP: {customer.zip_code}</p>
-                <h3>Employee</h3>
-                <p>ID: {employee.employee_id}</p>
-                <p>Name: {employee.name}</p>
+                <GetCustomer phone_number={order.customer.phone_number}/>
+                <GetEmployee employee_id={order.employee.employee_id}/>
                 <h3>STATUS: ACTIVE</h3>
                 <button onClick={()=>{markComplete(order.order_id)}}>Mark Complete</button>
                 <button onClick={()=>{editDetails(order.order_id)}}>Edit Order</button>
