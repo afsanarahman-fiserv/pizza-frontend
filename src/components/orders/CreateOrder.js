@@ -2,18 +2,18 @@ import axios from 'axios';
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import OrderDetailService from '../../service/OrderDetailService';
+import ProductService from '../../service/ProductService';
 
 export default function CreateOrder() {
     let location  = useLocation();
     let order_id = location.state.num;
 
-    const getAllProductsUrl = "http://localhost:8080/api/getAllProducts";
     let [state, setState] = useState({
         products: []
     });
 
     useEffect(() => {
-        axios.get(getAllProductsUrl).then((response)=>{
+        ProductService.getAllProducts().then((response)=>{
             setState(()=>({
                 products : response.data
             }));
@@ -21,18 +21,42 @@ export default function CreateOrder() {
     }, []);
 
     let details = state.products.map((product) => {
-        return {order_id : order_id, product_id : product.product_id, price_charged : product.price, quantity : 0}
+        return {
+            order_id : order_id, 
+            product_id : product.product_id, 
+            price_charged : product.price, 
+            quantity : 0
+        }
     })
-    
-    // let handleChange = (e, i) => {
-    //     details[i].quantity = e.target.value;
-    // }
+
+    let viewReceipt = (e) => {
+        e.preventDefault();
+        let products_ref = state.products;
+        let receipt = "";
+        let order_total = 0;
+        for(let i = 0; i < details.length; i++) {
+            let val = document.getElementById(i).value;
+            if(val != 0) {
+                let total = val * details[i].price_charged;
+                order_total += total;
+                let detail =  "$" + total + " :     $" + details[i].price_charged + " x " + val + " x \""+ products_ref[i].name + " - " + products_ref[i].size + "\"\n";
+                receipt += detail;
+            }
+        }
+        let tax = Math.round(order_total * 0.07 * 100) / 100;
+        receipt += "\nSUBTOTAL: $" + order_total;
+        receipt += "\n          TAX: $" + tax;
+        receipt += "\n      TOTAL: $" + (order_total + tax);
+        alert(receipt);
+    }
 
     let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
         for(let i = 0; i < details.length; i++) {
-            if(details[i].quantity != 0) {
+            let val = document.getElementById(i).value;
+            if(val != 0) {
+                details[i].quantity = val;
                 OrderDetailService.addOrderDetail(details[i]);
             }
         }
@@ -46,6 +70,9 @@ export default function CreateOrder() {
     let handlePrice = (e) => { setPrice(e.target.value) }
     let handleDiscount = (e) => {
         e.preventDefault();
+        let price_id = "price" + (id-1)
+        let price_element = document.getElementById(price_id);
+        price_element.innerHTML = price;
         details[id-1].price_charged = price;
         alert("Discount applied!"); 
     }
@@ -71,16 +98,15 @@ export default function CreateOrder() {
             <tbody>
                 {
                     state.products.map((product, i) => {
+                        let price_id = "price" + i
                         return(
-                            <tr id={i}>
+                            <tr>
                                 <td>{product.product_id}</td>
                                 <td>{product.name}</td>
                                 <td>{product.size}</td>
-                                <td>{product.price}</td>
+                                <td id={price_id}>{product.price}</td>
                                 <td>
-                                    <label>
-                                        <input type="number" min="0" placeholder='0'/>
-                                    </label>
+                                    <input type="number" min="0" placeholder='0' id={i}/>
                                 </td>
                             </tr>
                         )
@@ -88,6 +114,7 @@ export default function CreateOrder() {
                 }
             </tbody>
         </table>
+        <button onClick={viewReceipt}>View Receipt</button>
         <input type="submit" value="Submit Order"/>
         </form>
         <br/>

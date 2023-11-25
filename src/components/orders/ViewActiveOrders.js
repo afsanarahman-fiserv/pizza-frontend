@@ -5,6 +5,7 @@ import CustomerService from "../../service/CustomerService";
 import EmployeeService from "../../service/EmployeeService";
 import GetCustomer from "../customer/GetCustomer";
 import GetEmployee from "../employee/GetEmployee";
+import GetDetails from "./GetDetails";
 
 export default function ViewActiveOrders() {
     let [ordersState, setOrdersState] = useState({
@@ -55,6 +56,7 @@ export default function ViewActiveOrders() {
                     return(
                         <div>
                             <h4>Order #{order.order_id}</h4>
+                            <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
