@@ -69,6 +69,7 @@ export default function ViewOrder() {
             <>
             <div>
                 <h3>Order Details</h3>
+                <GetDetails order_id={order.order_id}/>
                 <p>Time Placed: {order.timestamp}</p>
                 <GetCustomer phone_number={order.customer.phone_number}/>
                 <GetEmployee employee_id={order.employee.employee_id}/>

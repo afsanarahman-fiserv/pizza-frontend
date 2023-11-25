@@ -117,7 +117,9 @@ export default function CreateOrder() {
         <button onClick={viewReceipt}>View Receipt</button>
         <input type="submit" value="Submit Order"/>
         </form>
+
         <br/>
+
         <form onSubmit={handleDiscount}>
             <label>
                 Product ID: <input onChange={handleId} type='text' value={id}></input>
@@ -129,8 +131,11 @@ export default function CreateOrder() {
             <br/>
             <input type="submit" value="Apply Discount"/>
         </form>
+
         <br/>
+
         <button onClick={cancelOrder}>Cancel Order</button>
+        
         <Link to="/newOrder/selectEmployee">
             <p>Back to Employee Selection</p>
         </Link>
