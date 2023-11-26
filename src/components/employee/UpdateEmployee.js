@@ -32,6 +32,12 @@ export default function UpdateEmployee() {
     let handleSubmit = (e) => {
         e.preventDefault();
         let new_employee = {employee_id : employee.employee_id, name : name, employee_role : employee_role, employee_status : employee.employee_status}
+        if(new_employee.name.length == 0) {
+            new_employee.name = employee.name;
+        }
+        if(new_employee.employee_role.length == 0) {
+            new_employee.employee_role = employee.employee_role;
+        }
         EmployeeService.updateEmployee(new_employee).then(()=>{
             alert("Employee updated successfully")
             navigate("/employeeMenu/viewEmployees");

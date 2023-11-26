@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import CustomerOrderService from "../../service/CustomerOrderService"
 import GetCustomer from "../customer/GetCustomer";
 import GetEmployee from "../employee/GetEmployee";
-import GetDetails from "./GetDetails";
+import GetDetails from "../details/GetDetails";
 
 export default function ViewOrder() {
     let location  = useLocation();

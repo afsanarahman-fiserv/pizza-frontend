@@ -34,7 +34,16 @@ export default function UpdateCustomer(){
     let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
-        let new_customers = {phone_number : phone_number, name : name, street_address : street_address, zip_code : zip_code}
+        let new_customers = {phone_number : customers.phone_number, name : name, street_address : street_address, zip_code : zip_code}
+        if(new_customers.name.length == 0) {
+            new_customers.name = customers.name;
+        }
+        if(new_customers.street_address.length == 0) {
+            new_customers.street_address = customers.street_address;
+        }
+        if(new_customers.zip_code.length == 0) {
+            new_customers.zip_code = customers.zip_code;
+        }
         CustomerService.updateCustomer(new_customers).then(()=>{
             alert("Customer updated successfully")
             navigate("/viewCustomers");

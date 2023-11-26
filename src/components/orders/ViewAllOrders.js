@@ -3,7 +3,7 @@ import CustomerOrderService from "../../service/CustomerOrderService"
 import { Link, useNavigate } from 'react-router-dom'
 import GetEmployee from "../employee/GetEmployee";
 import GetCustomer from "../customer/GetCustomer";
-import GetDetails from "./GetDetails";
+import GetDetails from "../details/GetDetails";
 
 export default function ViewAllOrders() {
     let [ordersState, setOrdersState] = useState({
@@ -31,9 +31,8 @@ export default function ViewAllOrders() {
                 if(order.order_status) {
                     return(
                         <div onClick={()=>{handleSelect(order.order_id)}}>
-                            <h4>Order #{order.order_id}</h4>
+                            <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
-                            <h4>COMPLETE</h4>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>
@@ -41,9 +40,8 @@ export default function ViewAllOrders() {
                 } else {
                     return(
                         <div onClick={()=>{handleSelect(order.order_id)}}>
-                            <h4>Order #{order.order_id}</h4>
+                            <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
-                            <h4>ACTIVE</h4>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>

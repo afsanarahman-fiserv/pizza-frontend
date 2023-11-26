@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import CustomerOrderService from "../../service/CustomerOrderService";
-import CustomerService from "../../service/CustomerService";
-import EmployeeService from "../../service/EmployeeService";
 import GetCustomer from "../customer/GetCustomer";
 import GetEmployee from "../employee/GetEmployee";
-import GetDetails from "./GetDetails";
+import GetDetails from "../details/GetDetails";
 
 export default function ViewActiveOrders() {
     let [ordersState, setOrdersState] = useState({

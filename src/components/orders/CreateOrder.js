@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import OrderDetailService from '../../service/OrderDetailService';
@@ -29,8 +28,7 @@ export default function CreateOrder() {
         }
     })
 
-    let viewReceipt = (e) => {
-        e.preventDefault();
+    let viewReceipt = () => {
         let products_ref = state.products;
         let receipt = "";
         let order_total = 0;
@@ -46,7 +44,7 @@ export default function CreateOrder() {
         let tax = Math.round(order_total * 0.07 * 100) / 100;
         receipt += "\nSUBTOTAL: $" + order_total;
         receipt += "\n          TAX: $" + tax;
-        receipt += "\n      TOTAL: $" + (order_total + tax);
+        receipt += "\n      TOTAL: $" + (Math.round((order_total + tax)*100)/100);
         alert(receipt);
     }
 
@@ -61,6 +59,7 @@ export default function CreateOrder() {
             }
         }
         alert("Order submitted!");
+        viewReceipt();
         navigate("/viewActiveOrders");
     }
 
@@ -72,7 +71,7 @@ export default function CreateOrder() {
         e.preventDefault();
         let price_id = "price" + (id-1)
         let price_element = document.getElementById(price_id);
-        price_element.innerHTML = price;
+        price_element.innerHTML = "$" + price;
         details[id-1].price_charged = price;
         alert("Discount applied!"); 
     }
@@ -104,7 +103,7 @@ export default function CreateOrder() {
                                 <td>{product.product_id}</td>
                                 <td>{product.name}</td>
                                 <td>{product.size}</td>
-                                <td id={price_id}>{product.price}</td>
+                                <td id={price_id}>${product.price}</td>
                                 <td>
                                     <input type="number" min="0" placeholder='0' id={i}/>
                                 </td>
@@ -120,6 +119,7 @@ export default function CreateOrder() {
 
         <br/>
 
+        <h4>Discount</h4>
         <form onSubmit={handleDiscount}>
             <label>
                 Product ID: <input onChange={handleId} type='text' value={id}></input>
@@ -135,7 +135,7 @@ export default function CreateOrder() {
         <br/>
 
         <button onClick={cancelOrder}>Cancel Order</button>
-        
+
         <Link to="/newOrder/selectEmployee">
             <p>Back to Employee Selection</p>
         </Link>

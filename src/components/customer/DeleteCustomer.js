@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import CustomerService from "../../service/CustomerService"
-import { Link } from 'react-router-dom'
 
 export default function DeleteCustomer(){
     let location  = useLocation();

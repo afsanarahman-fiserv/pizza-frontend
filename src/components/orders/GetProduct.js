@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from 'axios'
 import ProductService from "../../service/ProductService";
 
 export default function GetProduct({product_id}) {

@@ -17,6 +17,7 @@ import AddCustomer from './components//customer/AddCustomer';
 import UpdateCustomer from './components/customer/UpdateCustomer';
 import DeleteCustomer from './components/customer/DeleteCustomer';
 import ViewOrder from './components/orders/ViewOrder';
+import DeleteDetail from './components/details/DeleteDetail';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path={"/viewAllOrders"} element={<ViewAllOrders/>} exact={true}></Route>
           <Route path={"/viewOrders/viewOrder"} element={<ViewOrder/>} exact={true}></Route>
           <Route path={"/viewOrders/editOrder"} element={<UpdateOrder/>} exact={true}></Route>
+          <Route path={"/viewOrders/editOrder/deleteDetail"} element={<DeleteDetail/>} exact={true}></Route>
           <Route path={"/viewOrders/deleteOrder"} element={<DeleteOrder/>} exact={true}></Route>
 
           <Route path={"/employeeMenu/viewEmployees"} element={<ViewEmployees/>} exact={true}></Route>

@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 
 const getAllOrdersUrl = "http://localhost:8080/api/customerOrder";
+const getOrderUrl = "http://localhost:8080/api/customerOrder/";
 const addOrderUrl = "http://localhost:8080/api/addNewOrder";
 const updateOrderUrl = "http://localhost:8080/api/updateCustomerOrder";
 const deleteOrderUrl = "http://localhost:8080/api/deleteCustomerOrder/";
@@ -13,7 +14,7 @@ class CustomerOrderService {
     }
 
     findOrder(id) {
-        return axios.get(getAllOrdersUrl + id);
+        return axios.get(getOrderUrl + id);
     }
 
     addOrder(order) {

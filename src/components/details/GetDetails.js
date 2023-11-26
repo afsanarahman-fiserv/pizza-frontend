@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import OrderDetailService from "../../service/OrderDetailService"
-import GetProduct from "./GetProduct";
+import GetProduct from "../orders/GetProduct";
 
 export default function GetDetails({order_id}) {
     let [state, setDetails] = useState({
