@@ -30,8 +30,9 @@ export default function ViewCustomers() {
     }
 
     return(
-        <>
-        <h3>Select a Customer</h3>
+        <div className ="App">
+            <h3>Select a Customer</h3>
+        <header className="App-header2">
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -41,6 +42,7 @@ export default function ViewCustomers() {
                     <th>Name</th>
                     <th>Address</th>
                     <th>Zip Code</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -65,13 +67,16 @@ export default function ViewCustomers() {
                 }
             </tbody>
         </Table>
-        <button>
-            <Link to="/viewCustomers/newCustomer">Add New Customer</Link>
-        </button>
-        <Link to="/">
-            <p>Back to Main Menu</p>
-        </Link>
         </div>
-        </>
+        <Link className="edit-link2" to="/viewCustomers/newCustomer">
+            <button>Add New Customer</button>
+        </Link>
+        <br/>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
+        </Link>
+        <br/>
+        </header>
+        </div>
     );
 }

@@ -26,10 +26,9 @@ export default function ViewEmployees() {
     }
 
     return(
-
         <div className ="App">
             <h3>All Employees</h3>
-        <header className="App-header">
+        <header className="App-header2">
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -61,13 +60,15 @@ export default function ViewEmployees() {
                 }
             </tbody>
         </Table>
-        <button>
-            <Link to="/employeeMenu/addEmployee">Add New Employee</Link>
-        </button>
-        <Link to="/">
-            <p>Back to Main Menu</p>
-        </Link>
         </div>
+        <Link className="edit-link2" to="/employeeMenu/addEmployee">
+            <button>Add New Employee</button>
+        </Link>
+        <br/>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
+        </Link>
+        <br/>
         </header>
         </div>
     );
