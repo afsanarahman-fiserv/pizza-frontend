@@ -59,7 +59,6 @@ export default function ViewCustomers() {
                                 <td>{customers.zip_code}</td>
                                 <td>
                                     <button onClick={()=>{handleUpdate(customers.phone_number)}}>Edit</button>
-                                    <button onClick={()=>{handleDelete(customers.phone_number)}}>Delete</button>
                                 </td>
                             </tr>
                         )

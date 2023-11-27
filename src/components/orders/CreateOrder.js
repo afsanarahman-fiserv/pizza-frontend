@@ -34,10 +34,12 @@ export default function CreateOrder() {
         let order_total = 0;
         for(let i = 0; i < details.length; i++) {
             let val = document.getElementById(i).value;
+            let price_id = "price" + i;
+            let price = document.getElementById(price_id).innerHTML.substring(1);
             if(val != 0) {
-                let total = val * details[i].price_charged;
+                let total = val * price;
                 order_total += total;
-                let detail =  "$" + total + " :     $" + details[i].price_charged + " x " + val + " x \""+ products_ref[i].name + " - " + products_ref[i].size + "\"\n";
+                let detail =  "$" + total + " :     $" + price + " x " + val + " x \""+ products_ref[i].name + " - " + products_ref[i].size + "\"\n";
                 receipt += detail;
             }
         }
@@ -53,31 +55,32 @@ export default function CreateOrder() {
         e.preventDefault();
         for(let i = 0; i < details.length; i++) {
             let val = document.getElementById(i).value;
+            let price_id = "price" + i;
+            let price = document.getElementById(price_id).innerHTML.substring(1);
             if(val != 0) {
                 details[i].quantity = val;
+                details[i].price_charged = price;
                 OrderDetailService.addOrderDetail(details[i]);
             }
         }
         alert("Order submitted!");
-        viewReceipt();
         navigate("/viewActiveOrders");
     }
 
-    let [id, setId] = useState('');
-    let [price, setPrice] = useState('');
-    let handleId = (e) => { setId(e.target.value) }
-    let handlePrice = (e) => { setPrice(e.target.value) }
     let handleDiscount = (e) => {
         e.preventDefault();
-        let price_id = "price" + (id-1)
+        let new_id = document.getElementById("discount-id").value;
+        let new_price = document.getElementById("discount-price").value;
+
+        let price_id = "price" + (new_id-1);
         let price_element = document.getElementById(price_id);
-        price_element.innerHTML = "$" + price;
-        details[id-1].price_charged = price;
+        price_element.innerHTML = "$" + new_price;
+
         alert("Discount applied!"); 
     }
 
     let cancelOrder = () => {
-        navigate("/viewOrders/deleteOrder", {state : {order_id}})
+        navigate("/")
     }
 
     return(
@@ -122,11 +125,11 @@ export default function CreateOrder() {
         <h4>Discount</h4>
         <form onSubmit={handleDiscount}>
             <label>
-                Product ID: <input onChange={handleId} type='text' value={id}></input>
+                Product ID: <input id="discount-id" type='text'></input>
             </label>
             <br/>
             <label>
-                New Price: <input onChange={handlePrice} type='text' value={price}></input>
+                New Price: <input id="discount-price" type='text'></input>
             </label>
             <br/>
             <input type="submit" value="Apply Discount"/>
