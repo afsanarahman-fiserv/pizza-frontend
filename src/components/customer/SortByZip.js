@@ -27,18 +27,23 @@ export default function SortByZip() {
     }
 
     return(
-        <>
-        <h3>Select Zip Code</h3>
+        <div className ="App">
+            <h3>Select Zip Code</h3>
         {
             zips_list.map((zip) => {
                 return(
-                    <button onClick={()=>{goToZip(zip)}}>{zip}</button>
+                    <header className="App-header4">
+                        <br/>
+                        <button onClick={()=>{goToZip(zip)}}>{zip}</button>
+                    </header>
                 )
             })
         }
-        <Link to="/viewAllOrders">
-            <p>Back to All Orders</p>
+        <header className="App-header4">
+        <Link className="edit-link3" to="/viewAllOrders">
+            <button>Back to All Orders</button>
         </Link>
-        </>
+        </header>
+        </div>
     )
 }

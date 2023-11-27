@@ -47,13 +47,15 @@ export default function ViewActiveOrders() {
     }
 
     return(
-        <>
-        <h3>Active Orders</h3>
+        <div className ="App">
+            <h3>Active Orders</h3>
         {
             ordersState.orders.map((order) => {
                 if(!order.order_status) {
                     return(
+                        <header className="App-header4">
                         <div>
+                            <br></br>
                             <h4>Order #{order.order_id}</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
@@ -61,16 +63,20 @@ export default function ViewActiveOrders() {
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
                         </div>
+                        </header>
                     )
                 }
             })
         }
-        <Link to="/viewAllOrders">
-            <p>View All Orders</p>
+        <header className="App-header4">
+        <Link className="edit-link4" to="/viewAllOrders">
+            <button>View All Orders</button>
         </Link>
-        <Link to="/">
-            <p>Back to Main Menu</p>
+        <br/>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
         </Link>
-        </>
+        </header>
+        </div>
     )
 }

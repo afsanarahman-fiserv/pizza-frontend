@@ -18,11 +18,13 @@ export default function GetCustomer({phone_number}) {
 
     return(
         <>
+        <br></br>
         <h5>Customer</h5>
         Name: {customer.name}<br/>
         Phone: {customer.phone_number}<br/>
         Street Address: {customer.street_address}<br/>
         ZIP: {customer.zip_code}<br/>
+        <br></br>
         </>
     )
 }
