@@ -78,11 +78,7 @@ export default function UpdateDetails({order_id}) {
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>
-                        <button>
-                            Update Totals
-                        </button>
-                    </th>
+                    <th>Totals</th>
                     <th></th>
                 </tr>
             </thead>

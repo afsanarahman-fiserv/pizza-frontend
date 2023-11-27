@@ -4,8 +4,8 @@ import CustomerService from "../../service/CustomerService";
 
 export default function GetCustomer({phone_number}) {
     let [customer, setCustState] = useState({
-        phone_number : '',
         name : '',
+        phone_number : '',
         street_address : '',
         zip_code : ''
     });

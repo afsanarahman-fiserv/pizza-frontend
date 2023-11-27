@@ -32,6 +32,7 @@ export default function ViewActiveOrders() {
             },
             order_status : true
         }
+        alert(new_order.data)
         CustomerOrderService.updateOrder(new_order).then(()=>{
             alert("Order marked complete");
         }, ()=>{
@@ -59,7 +60,6 @@ export default function ViewActiveOrders() {
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
-                            <button onClick={()=>{deleteOrder(order.order_id)}}>Delete Order</button>
                         </div>
                     )
                 }

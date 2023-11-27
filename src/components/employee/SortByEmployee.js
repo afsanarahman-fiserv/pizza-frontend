@@ -1,16 +1,14 @@
-import CustomerOrderService from "../../service/CustomerOrderService";
-import EmployeeService from "../../service/EmployeeService";
-import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Table } from "react-bootstrap"; 
+import { useNavigate } from "react-router-dom";
+import EmployeeService from "../../service/EmployeeService";
+import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export default function SelectEmployee() {
-    let location  = useLocation();
-    let customer = location.state.phone_number;
-
+export default function SortByEmployee() {
     let [empState, setState] = useState({
         employees: []
     });
+
     useEffect(() => {
         EmployeeService.getAllEmployees().then((response)=>{
             setState(()=>({
@@ -19,37 +17,9 @@ export default function SelectEmployee() {
         }, ()=>{});
     }, []);
 
-    let [orderState, setOrderState] = useState({
-        orders : []
-    });
-    useEffect(() => {
-        CustomerOrderService.getAllOrders().then((response)=>{
-            setOrderState(()=>({
-                orders : response.data
-            }));
-        }, ()=>{});
-    }, []);
-    let num = 1;
-    if(orderState.orders.length != 0) {
-        num = orderState.orders[orderState.orders.length-1].order_id + 1;
-    }
-
     let navigate = useNavigate();
     let handleSelect = (employee_id) => {
-        let order = {
-            employee : {
-                employee_id : employee_id
-            },
-            customer : {
-                phone_number : customer
-            }
-        }
-        CustomerOrderService.addOrder(order).then(()=>{
-            navigate('/newOrder/createOrder', {state : {num}})
-        }, (response)=>{
-            alert(JSON.stringify(order));
-            navigate('/newOrder/createOrder', {state : {num}});
-        })
+        navigate("/viewAllOrders/byEmployee/selected", {state : {employee_id}});
     }
 
     return(
@@ -83,6 +53,9 @@ export default function SelectEmployee() {
                 }
             </tbody>
         </Table>
+        <Link to="/viewAllOrders">
+            <p>Back to All Orders</p>
+        </Link>
         </>
     )
 }

@@ -18,6 +18,10 @@ import UpdateCustomer from './components/customer/UpdateCustomer';
 import DeleteCustomer from './components/customer/DeleteCustomer';
 import ViewOrder from './components/orders/ViewOrder';
 import DeleteDetail from './components/details/DeleteDetail';
+import SortByEmployee from './components/employee/SortByEmployee';
+import OrdersByEmployee from './components/orders/OrdersByEmployee'
+import SortByZip from './components/customer/SortByZip';
+import OrdersByZip from './components/orders/OrdersByZip';
 
 function App() {
   return (
@@ -40,6 +44,10 @@ function App() {
           <Route path={"/viewOrders/editOrder"} element={<UpdateOrder/>} exact={true}></Route>
           <Route path={"/viewOrders/editOrder/deleteDetail"} element={<DeleteDetail/>} exact={true}></Route>
           <Route path={"/viewOrders/deleteOrder"} element={<DeleteOrder/>} exact={true}></Route>
+          <Route path={"/viewAllOrders/byEmployee"} element={<SortByEmployee/>} exact={true}></Route>
+          <Route path={"/viewAllOrders/byEmployee/selected"} element={<OrdersByEmployee/>} exact={true}></Route>
+          <Route path={"/viewAllOrders/byZip"} element={<SortByZip/>} exact={true}></Route>
+          <Route path={"/viewAllOrders/byZip/selected"} element={<OrdersByZip/>} exact={true}></Route>
 
           <Route path={"/employeeMenu/viewEmployees"} element={<ViewEmployees/>} exact={true}></Route>
           <Route path={"/employeeMenu/addEmployee"} element={<AddEmployee/>} exact={true}></Route>

@@ -9,14 +9,17 @@ export default function MainMenu() {
                 <button>Start New Order</button>
             </Link>
             <br/>
-            <Link className="edit-link" to="/viewActiveOrders">
-                <button>View Orders</button>
-            </Link>
-            <br/>
             <Link className="edit-link" to="/employeeMenu/viewEmployees">
                 <button>View Employees</button>
             </Link>
             <br/>
+            <Link className="edit-link" to="/viewActiveOrders">
+                <button>View Orders</button>
+            </Link>
+            <br/>
+            <Link className="edit-link" to="/viewAllOrders">
+                <button>View All Orders</button>
+            </Link>
             </header>
         </div>
     )

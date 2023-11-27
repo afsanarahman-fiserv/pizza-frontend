@@ -1,17 +1,19 @@
-import React, {useEffect, useState} from "react";
-import CustomerOrderService from "../../service/CustomerOrderService"
-import { Link, useNavigate } from 'react-router-dom'
-import GetEmployee from "../employee/GetEmployee";
+import { useState, useEffect } from "react";
+import CustomerOrderService from "../../service/CustomerOrderService";
+import { useLocation, useNavigate } from "react-router-dom";
 import GetCustomer from "../customer/GetCustomer";
+import GetEmployee from "../employee/GetEmployee";
 import GetDetails from "../details/GetDetails";
 
-export default function ViewAllOrders() {
+export default function OrdersByZip() {
+    let location = useLocation();
+
     let [ordersState, setOrdersState] = useState({
         orders: []
     });
 
     useEffect(() => {
-        CustomerOrderService.getAllOrders().then((response)=>{
+        CustomerOrderService.getOrderByZip(location.state.zip_code).then((response)=>{
             setOrdersState(()=>({
                 orders : response.data
             }));
@@ -19,6 +21,9 @@ export default function ViewAllOrders() {
     }, []);
 
     let navigate = useNavigate();
+    let goBack = () => {
+        navigate("/viewAllOrders/byZip");
+    }
 
     let markComplete = (order_id, phone_number, employee_id) => {
         let new_order = {
@@ -41,30 +46,16 @@ export default function ViewAllOrders() {
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
     }
-    
-    let handleSelect = (order_id) => {
-        navigate('/viewOrders/viewOrder', {state : {order_id}})
-    }
-
-    let goToEmployees = () => {
-        navigate("/viewAllOrders/byEmployee");
-    }
-
-    let goToZips = () => {
-        navigate("/viewAllOrders/byZip");
-    }
 
     return(
         <>
         <h3>All Orders</h3>
-        <button onClick={goToEmployees}>View By Employee</button>
-        <button onClick={goToZips}>View By ZIP</button>
-        <button>View By Week</button>
+        <button onClick={goBack}>Select Different Zip</button>
         {
             ordersState.orders.map((order) => {
                 if(order.order_status) {
                     return(
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
@@ -73,7 +64,7 @@ export default function ViewAllOrders() {
                     )
                 } else {
                     return(
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
@@ -86,12 +77,6 @@ export default function ViewAllOrders() {
                 
             })
         }
-        <Link to="/viewActiveOrders">
-            <p>View Active Orders</p>
-        </Link>
-        <Link to="/">
-            <p>Back to Main Menu</p>
-        </Link>
         </>
-    );
+    )
 }
