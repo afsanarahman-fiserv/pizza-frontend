@@ -29,6 +29,7 @@ export default function ViewEmployees() {
 
         <div className ="App">
             <h3>All Employees</h3>
+        <header className="App-header">
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -40,6 +41,7 @@ export default function ViewEmployees() {
                     <th></th>
                 </tr>
             </thead>
+            
             <tbody>
                 {
                     state.employees.map((employee, i)=>{
@@ -66,6 +68,7 @@ export default function ViewEmployees() {
             <p>Back to Main Menu</p>
         </Link>
         </div>
+        </header>
         </div>
     );
 }
