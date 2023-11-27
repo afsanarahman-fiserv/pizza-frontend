@@ -48,22 +48,27 @@ export default function OrdersByZip() {
     }
 
     return(
-        <>
-        <h3>All Orders</h3>
+        <div className ="App">
+            <h3>All Orders</h3>
+        <header className="App-header3">
         <button onClick={goBack}>Select Different Zip</button>
+        </header>
         {
             ordersState.orders.map((order) => {
                 if(order.order_status) {
                     return(
+                        <header className="App-header4">
                         <div>
                             <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>
+                        </header>
                     )
                 } else {
                     return(
+                        <header className="App-header4">
                         <div>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
@@ -72,11 +77,12 @@ export default function OrdersByZip() {
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
                         </div>
+                        </header>
                     )
                 }
                 
             })
         }
-        </>
-    )
+        </div>
+    );
 }

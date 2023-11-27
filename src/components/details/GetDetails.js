@@ -34,7 +34,8 @@ export default function GetDetails({order_id}) {
         }
         SUBTOTAL: ${order_total}<br/>
         TAX: ${Math.round(order_total * 0.07 * 100)/100}<br/>
-        <b>TOTAL: ${Math.round(order_total * 1.07 * 100)/100}</b>
+        TOTAL: ${Math.round(order_total * 1.07 * 100)/100}
+        <br></br>
         </>
     )
 }

@@ -73,26 +73,31 @@ export default function ViewAllOrders() {
     }
 
     return(
-        <>
-        <h3>All Orders</h3>
+        <div className ="App">
+            <h3>All Orders</h3>
+        <header className="App-header3">
         <button onClick={goToEmployees}>View By Employee</button>
         <button onClick={goToZips}>View By ZIP</button>
         <button>View By Week</button>
+        </header>
         {
             ordersState.orders.map((order) => {
                 let num_details = getNumDetails(order.order_id);
                 if(num_details != 0) {
                     if(order.order_status) {
                         return(
+                        <header className="App-header4">
                             <div onClick={()=>{handleSelect(order.order_id)}}>
-                                <h4>Order #{order.order_id} - COMPLETE</h4>
+                                <h2>Order #{order.order_id} - COMPLETE</h2>
                                 <GetDetails order_id={order.order_id}/>
                                 <GetCustomer phone_number={order.customer.phone_number}/>
                                 <GetEmployee employee_id={order.employee.employee_id}/>
                             </div>
+                        </header>
                         )
                     } else {
                         return(
+                        <header className="App-header4">
                             <div onClick={()=>{handleSelect(order.order_id)}}>
                                 <h4>Order #{order.order_id} - ACTIVE</h4>
                                 <GetDetails order_id={order.order_id}/>
@@ -100,18 +105,23 @@ export default function ViewAllOrders() {
                                 <GetEmployee employee_id={order.employee.employee_id}/>
                                 <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                                 <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
+                            <br/>
                             </div>
+                        </header>
                         )
                     }
                 }
             })
         }
-        <Link to="/viewActiveOrders">
-            <p>View Active Orders</p>
+        <header className="App-header4">
+        <Link className="edit-link2" to="/viewActiveOrders">
+            <button>View Active Orders</button>
         </Link>
-        <Link to="/">
-            <p>Back to Main Menu</p>
+        <br/>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
         </Link>
-        </>
+        </header>
+        </div>
     );
 }

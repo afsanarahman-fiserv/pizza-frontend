@@ -14,7 +14,7 @@ export default function MainMenu() {
             </Link>
             <br/>
             <Link className="edit-link" to="/viewActiveOrders">
-                <button>View Orders</button>
+                <button>View Active Orders</button>
             </Link>
             <br/>
             <Link className="edit-link" to="/viewAllOrders">

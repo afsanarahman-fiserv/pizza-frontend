@@ -53,8 +53,10 @@ export default function SelectEmployee() {
     }
 
     return(
-        <>
-        <h3>Select an Employee</h3>
+        <div className ="App">
+            <h3>Select an Employee</h3>
+        <header className="App-header2">
+        <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -83,6 +85,13 @@ export default function SelectEmployee() {
                 }
             </tbody>
         </Table>
-        </>
+        </div>
+        <br></br>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
+        </Link>
+        <br/>
+        </header>
+        </div>
     )
 }

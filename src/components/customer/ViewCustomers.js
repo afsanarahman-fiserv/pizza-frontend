@@ -32,7 +32,7 @@ export default function ViewCustomers() {
     return(
         <div className ="App">
             <h3>Select a Customer</h3>
-        <header className="App-header2">
+        <header className="App-header3">
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -67,6 +67,8 @@ export default function ViewCustomers() {
             </tbody>
         </Table>
         </div>
+        </header>
+        <header className="App-header4">
         <Link className="edit-link2" to="/viewCustomers/newCustomer">
             <button>Add New Customer</button>
         </Link>

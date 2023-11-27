@@ -23,8 +23,10 @@ export default function SortByEmployee() {
     }
 
     return(
-        <>
-        <h3>Select an Employee</h3>
+        <div className ="App">
+            <h3>Select an Employee</h3>
+        <header className="App-header3">
+        <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -53,9 +55,15 @@ export default function SortByEmployee() {
                 }
             </tbody>
         </Table>
-        <Link to="/viewAllOrders">
-            <p>Back to All Orders</p>
+        </div>
+        </header>
+        <header className="App-header4">
+        <br/>
+        <Link className="edit-link3" to="/viewAllOrders">
+            <button>Back to All Orders</button>
         </Link>
-        </>
+        <br/>
+        </header>
+        </div>
     )
 }
