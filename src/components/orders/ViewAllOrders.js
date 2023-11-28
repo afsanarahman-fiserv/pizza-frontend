@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import CustomerOrderService from "../../service/CustomerOrderService"
 import { useLocation, Link, useNavigate } from 'react-router-dom'
+import OrderDetailService from "../../service/OrderDetailService";
+import { Link, useNavigate } from 'react-router-dom'
 import GetEmployee from "../employee/GetEmployee";
 import GetCustomer from "../customer/GetCustomer";
 import GetDetails from "../details/GetDetails";
@@ -15,6 +17,18 @@ export default function ViewAllOrders() {
         CustomerOrderService.getAllOrders().then((response)=>{
             setOrdersState(()=>({
                 orders : response.data
+            }));
+        }, ()=>{});
+    }, []);
+
+    let [detailsState, setDetails] = useState({
+        details : []
+    })
+
+    useEffect(() => {
+        OrderDetailService.getAllOrderDetails().then((response)=>{
+            setDetails(()=>({
+                details : response.data
             }));
         }, ()=>{});
     }, []);
@@ -43,7 +57,7 @@ export default function ViewAllOrders() {
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
     }
-    
+
     let handleSelect = (order_id) => {
         navigate('/viewOrders/viewOrder', {state : {order_id}})
     }
@@ -56,6 +70,11 @@ export default function ViewAllOrders() {
         navigate("/viewAllOrders/byZip");
     }
 
+    let getNumDetails = (order_id) => {
+        let order_details = detailsState.details.filter((detail) => detail.order_id === order_id);
+        return order_details.length;
+    }
+
     return(
         <div className ="App">
             <h3>All Orders</h3>
@@ -66,32 +85,35 @@ export default function ViewAllOrders() {
         </header>
         {
             ordersState.orders.map((order) => {
-                if(order.order_status) {
-                    return(
+                let num_details = getNumDetails(order.order_id);
+                if(num_details != 0) {
+                    if(order.order_status) {
+                        return(
                         <header className="App-header4">
-                        <div>
+                        <div onClick={()=>{handleSelect(order.order_id)}}>
                             <h2>Order #{order.order_id} - COMPLETE</h2>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>
                         </header>
-                    )
-                } else {
-                    return(
+                        )
+                    } else {
+                        return(
                         <header className="App-header4">
-                        <div>
+                        <div onClick={()=>{handleSelect(order.order_id)}}>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
+                            <br/>
                         </div>
                         </header>
-                    )
+                        )
+                    }
                 }
-                
             })
         }
         <header className="App-header4">
