@@ -29,18 +29,9 @@ export default function ViewOrder() {
     })
 
     let navigate = useNavigate();
-    let markComplete = () => {
-        let new_order = {
-            order_id : order.order_id, 
-            customer : {
-                phone_number : order.customer.phone_number
-            },
-            employee : {
-                employee_id : order.employee.employee_id
-            },
-            order_status : true
-        }
-        CustomerOrderService.updateOrder(new_order).then(()=>{
+    let markComplete = (order) => {
+        order.order_status = true;
+        CustomerOrderService.updateOrder(order).then(()=>{
             alert("Order completed!");
         }, ()=>{
             alert("Order status update failed.")
@@ -74,7 +65,7 @@ export default function ViewOrder() {
                 <GetCustomer phone_number={order.customer.phone_number}/>
                 <GetEmployee employee_id={order.employee.employee_id}/>
                 <h3>STATUS: ACTIVE</h3>
-                <button onClick={()=>{markComplete(order.order_id)}}>Mark Complete</button>
+                <button onClick={()=>{markComplete(order)}}>Mark Complete</button>
                 <button onClick={()=>{editDetails(order.order_id)}}>Edit Order</button>
             </div>
             </>

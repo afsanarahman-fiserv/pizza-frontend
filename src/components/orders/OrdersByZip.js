@@ -25,19 +25,9 @@ export default function OrdersByZip() {
         navigate("/viewAllOrders/byZip");
     }
 
-    let markComplete = (order_id, phone_number, employee_id) => {
-        let new_order = {
-            order_id : order_id,
-            customer : {
-                phone_number : phone_number
-            }, 
-            employee : {
-                employee_id : employee_id
-            },
-            order_status : true
-        }
-        alert(new_order.data)
-        CustomerOrderService.updateOrder(new_order).then(()=>{
+    let markComplete = (order) => {
+        order.order_status = true;
+        CustomerOrderService.updateOrder(order).then(()=>{
             alert("Order marked complete");
         }, ()=>{
             alert("Order update failed");
