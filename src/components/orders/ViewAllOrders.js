@@ -88,7 +88,7 @@ export default function ViewAllOrders() {
                     if(order.order_status) {
                         return(
                         <header className="App-header4">
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h2>Order #{order.order_id} - COMPLETE</h2>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
@@ -99,7 +99,7 @@ export default function ViewAllOrders() {
                     } else {
                         return(
                         <header className="App-header4">
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>

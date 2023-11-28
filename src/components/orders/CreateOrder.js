@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OrderDetailService from '../../service/OrderDetailService';
 import ProductService from '../../service/ProductService';
 import { Table } from "react-bootstrap"; 
@@ -139,9 +139,9 @@ export default function CreateOrder() {
                 New Price: <input id="discount-price" type='text'></input>
             </label>
             <br/>
+            <br/>
+            <input type="submit" value="Apply Discount"/>
         </form> 
-        <br/>
-        <input type="submit" value="Apply Discount"/>
         <br/>
         <button onClick={cancelOrder}>Cancel Order</button>
         </header>   
