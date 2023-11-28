@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import OrderDetailService from "../../service/OrderDetailService";
 import GetProduct from "../orders/GetProduct";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap"; 
+
 
 export default function UpdateDetails({order_id}) {
     let [state, setDetails] = useState({
@@ -69,9 +71,11 @@ export default function UpdateDetails({order_id}) {
     }
 
     return(
-        <>
+        <div className ="App">
+        <header className="App-header3">
         <form onSubmit={handleSubmit}>
-        <table>
+        <div className= "table-wrapper">
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -105,9 +109,12 @@ export default function UpdateDetails({order_id}) {
                     })
                 }
             </tbody>
-        </table>
+        </Table>
+        </div>
+        <br/>
         <input type="submit" value="Update Order"/>
         </form>
-        </>
-    )
+        </header>
+        </div>
+    );
 }

@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router"
+import {Link} from "react-router-dom"
 import { useState, useEffect } from "react";
 import CustomerOrderService from "../../service/CustomerOrderService";
 import UpdateDetails from "../details/UpdateDetails";
@@ -34,13 +35,27 @@ export default function UpdateOrder() {
     }
     
     return(
-        <>
+
+        <div className ="App">
         <h3>Order Details</h3>
+        <header className="App-header4">
         <UpdateDetails order_id={location.state.order_id}/>
-        <p>Time Placed: {order.timestamp}</p>
+        Time Placed: {order.timestamp}
+        <br/>
         <GetCustomer phone_number={order.customer.phone_number}/>
         <button onClick={()=>{editCustomer(order.customer.phone_number)}}>Edit Customer</button>
         <GetEmployee employee_id={order.employee.employee_id}/>
-        </>
+        </header>
+        <header className="App-header4">
+        <Link className="edit-link2" to="/viewActiveOrders">
+            <button>View Active Orders</button>
+        </Link>
+        <br/>
+        <Link className="edit-link3" to="/">
+            <button>Back to Main Menu</button>
+        </Link>
+        </header>
+        </div>
+    
     )
 }

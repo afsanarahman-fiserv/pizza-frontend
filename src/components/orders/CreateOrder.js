@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import OrderDetailService from '../../service/OrderDetailService';
 import ProductService from '../../service/ProductService';
+import { Table } from "react-bootstrap"; 
 
 export default function CreateOrder() {
     let location  = useLocation();
@@ -81,10 +82,12 @@ export default function CreateOrder() {
     }
 
     return(
-        <>
-        <h3>Order Details</h3>
+        <div className ="App">
+            <h3>Order Details</h3>
         <form onSubmit={handleSubmit}>
-        <table>
+        <header className="App-header3">
+        <div className= "table-wrapper">
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -112,13 +115,17 @@ export default function CreateOrder() {
                     })
                 }
             </tbody>
-        </table>
-        <button onClick={viewReceipt}>View Receipt</button>
+        </Table>
+        </div>
+        </header> 
+        <header className="App-header3">
         <input type="submit" value="Submit Order"/>
+        </header>
         </form>
-
-        <br/>
-
+        <header className="App-header3">
+        <button onClick={viewReceipt}>View Receipt</button>
+        </header> 
+        <header className="App-header4">
         <h4>Discount</h4>
         <form onSubmit={handleDiscount}>
             <label>
@@ -129,16 +136,12 @@ export default function CreateOrder() {
                 New Price: <input onChange={handlePrice} type='text' value={price}></input>
             </label>
             <br/>
-            <input type="submit" value="Apply Discount"/>
-        </form>
-
+        </form> 
         <br/>
-
+        <input type="submit" value="Apply Discount"/>
+        <br/>
         <button onClick={cancelOrder}>Cancel Order</button>
-
-        <Link to="/newOrder/selectEmployee">
-            <p>Back to Employee Selection</p>
-        </Link>
-        </>
+        </header>   
+        </div>
     )
 }

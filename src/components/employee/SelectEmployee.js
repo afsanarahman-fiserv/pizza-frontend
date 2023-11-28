@@ -55,7 +55,7 @@ export default function SelectEmployee() {
     return(
         <div className ="App">
             <h3>Select an Employee</h3>
-        <header className="App-header2">
+        <header className="App-header3">
         <div className= "table-wrapper">
         <Table striped bordered hover>
             <thead>
@@ -86,12 +86,13 @@ export default function SelectEmployee() {
             </tbody>
         </Table>
         </div>
-        <br></br>
-        <Link className="edit-link3" to="/">
+        </header>
+        <header className="App-header4">
+        <Link className="edit-link2" to="/">
             <button>Back to Main Menu</button>
         </Link>
         <br/>
         </header>
         </div>
-    )
+    );
 }

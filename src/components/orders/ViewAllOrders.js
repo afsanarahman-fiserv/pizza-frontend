@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import CustomerOrderService from "../../service/CustomerOrderService"
-import { Link, useNavigate } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import GetEmployee from "../employee/GetEmployee";
 import GetCustomer from "../customer/GetCustomer";
 import GetDetails from "../details/GetDetails";
 
 export default function ViewAllOrders() {
+    let location  = useLocation();
     let [ordersState, setOrdersState] = useState({
         orders: []
     });
@@ -37,6 +38,7 @@ export default function ViewAllOrders() {
         }, ()=>{
             alert("Order update failed");
         })
+        window.location.reload()
     }
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
@@ -67,7 +69,7 @@ export default function ViewAllOrders() {
                 if(order.order_status) {
                     return(
                         <header className="App-header4">
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h2>Order #{order.order_id} - COMPLETE</h2>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
@@ -78,14 +80,13 @@ export default function ViewAllOrders() {
                 } else {
                     return(
                         <header className="App-header4">
-                        <div onClick={()=>{handleSelect(order.order_id)}}>
+                        <div>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
-                            <br/>
                         </div>
                         </header>
                     )

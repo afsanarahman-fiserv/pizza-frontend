@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useLocation, Link, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import CustomerOrderService from "../../service/CustomerOrderService";
 import GetCustomer from "../customer/GetCustomer";
@@ -6,6 +6,7 @@ import GetEmployee from "../employee/GetEmployee";
 import GetDetails from "../details/GetDetails";
 
 export default function ViewActiveOrders() {
+    let location  = useLocation();
     let [ordersState, setOrdersState] = useState({
         orders: []
     });
@@ -38,6 +39,7 @@ export default function ViewActiveOrders() {
         }, ()=>{
             alert("Order update failed");
         })
+        window.location.reload()
     }
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
@@ -55,7 +57,6 @@ export default function ViewActiveOrders() {
                     return(
                         <header className="App-header4">
                         <div>
-                            <br></br>
                             <h4>Order #{order.order_id}</h4>
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>

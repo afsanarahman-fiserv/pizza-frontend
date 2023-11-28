@@ -18,9 +18,10 @@ export default function GetEmployee({employee_id}) {
 
     return(
         <>
+        <br/>
         <h5>Employee</h5>
-        Name: {employee.name}<br/>
-        ID: {employee.employee_id}<br/>
+            Name: {employee.name}<br/>
+            ID: {employee.employee_id}<br/>
         </>
     )
 }
