@@ -40,7 +40,8 @@ export default function UpdateOrder() {
         <h3>Order Details</h3>
         <header className="App-header4">
         <UpdateDetails order_id={location.state.order_id}/>
-        Time Placed: {order.timestamp}
+        <br/>
+        <h5>Time Placed:</h5> b
         <br/>
         <GetCustomer phone_number={order.customer.phone_number}/>
         <button onClick={()=>{editCustomer(order.customer.phone_number)}}>Edit Customer</button>

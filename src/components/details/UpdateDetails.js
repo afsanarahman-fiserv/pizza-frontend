@@ -115,6 +115,8 @@ export default function UpdateDetails({order_id}) {
         <input type="submit" value="Update Order"/>
         </form>
         </header>
+        <br/>
+        <button onClick={viewReceipt}>View Receipt</button>
         </div>
     );
 }
