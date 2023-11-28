@@ -46,8 +46,12 @@ export default function ViewActiveOrders() {
                     return(
                         <header className="App-header4">
                         <div>
+                            <br/>
                             <h4>Order #{order.order_id}</h4>
                             <GetDetails order_id={order.order_id}/>
+                            <br/>
+                                <h5>Time Placed:</h5>{order.createdAt}
+                            <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order)}}>Mark Complete</button>

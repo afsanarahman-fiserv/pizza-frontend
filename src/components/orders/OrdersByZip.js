@@ -32,6 +32,7 @@ export default function OrdersByZip() {
         }, ()=>{
             alert("Order update failed");
         })
+        window.location.reload()
     }
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
@@ -51,6 +52,9 @@ export default function OrdersByZip() {
                         <div>
                             <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
+                            <br/>
+                                <h5>Time Placed:</h5>{order.createdAt}
+                            <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>
@@ -64,7 +68,7 @@ export default function OrdersByZip() {
                             <GetDetails order_id={order.order_id}/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
-                            <button onClick={()=>{markComplete(order.order_id, order.customer.phone_number, order.employee.employee_id)}}>Mark Complete</button>
+                            <button onClick={()=>{markComplete(order)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
                         </div>
                         </header>

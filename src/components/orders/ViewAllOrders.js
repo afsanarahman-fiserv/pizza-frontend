@@ -79,10 +79,14 @@ export default function ViewAllOrders() {
                         return(
                         <header className="App-header4">
                         <div>
-                            <h2>Order #{order.order_id} - COMPLETE</h2>
+                            <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
+                            <br/>
+                                <h5>Time Completed:</h5>{order.createdAt}
+                            <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
+                            <br/>
                         </div>
                         </header>
                         )
@@ -92,11 +96,13 @@ export default function ViewAllOrders() {
                         <div>
                             <h4>Order #{order.order_id} - ACTIVE</h4>
                             <GetDetails order_id={order.order_id}/>
+                            <br/>
+                                <h5>Time Placed:</h5>{order.createdAt}
+                            <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                             <button onClick={()=>{markComplete(order)}}>Mark Complete</button>
                             <button onClick={()=>{editOrder(order.order_id)}}>Edit Order</button>
-                            <br/>
                         </div>
                         </header>
                         )

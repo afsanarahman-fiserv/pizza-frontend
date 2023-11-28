@@ -33,6 +33,7 @@ export default function OrdersByEmployee() {
         }, ()=>{
             alert("Order update failed");
         })
+        window.location.reload()
     }
     let editOrder = (order_id) => {
         navigate("/viewOrders/editOrder", {state : {order_id}});
@@ -52,6 +53,9 @@ export default function OrdersByEmployee() {
                         <div>
                             <h4>Order #{order.order_id} - COMPLETE</h4>
                             <GetDetails order_id={order.order_id}/>
+                            <br/>
+                                <h5>Time Placed:</h5>{order.createdAt}
+                            <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
                         </div>

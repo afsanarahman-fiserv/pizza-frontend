@@ -29,17 +29,18 @@ export default function SortByZip() {
     return(
         <div className ="App">
             <h3>Select Zip Code</h3>
+            <header className="App-header4">
+            <br/>
         {
             zips_list.map((zip) => {
                 return(
-                    <header className="App-header4">
-                        <br/>
+                        <>
                         <button onClick={()=>{goToZip(zip)}}>{zip}</button>
-                    </header>
+                        <br/>
+                        </>
                 )
             })
         }
-        <header className="App-header4">
         <Link className="edit-link3" to="/viewAllOrders">
             <button>Back to All Orders</button>
         </Link>
