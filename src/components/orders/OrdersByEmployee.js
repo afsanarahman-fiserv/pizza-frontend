@@ -58,6 +58,7 @@ export default function OrdersByEmployee() {
                             <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
+                            <br/>
                         </div>
                         </header>
                     )

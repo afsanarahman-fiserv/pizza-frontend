@@ -57,6 +57,7 @@ export default function OrdersByZip() {
                             <br/>
                             <GetCustomer phone_number={order.customer.phone_number}/>
                             <GetEmployee employee_id={order.employee.employee_id}/>
+                            <br/>
                         </div>
                         </header>
                     )
