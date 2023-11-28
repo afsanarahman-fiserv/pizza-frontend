@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import CustomerOrderService from "../../service/CustomerOrderService"
-import { useLocation, Link, useNavigate } from 'react-router-dom'
 import OrderDetailService from "../../service/OrderDetailService";
 import { Link, useNavigate } from 'react-router-dom'
 import GetEmployee from "../employee/GetEmployee";
@@ -8,7 +7,6 @@ import GetCustomer from "../customer/GetCustomer";
 import GetDetails from "../details/GetDetails";
 
 export default function ViewAllOrders() {
-    let location  = useLocation();
     let [ordersState, setOrdersState] = useState({
         orders: []
     });
