@@ -52,18 +52,18 @@ export default function OrdersByEmployee() {
         <div className ="App">
             <h3>Employee #{location.state.employee_id}'s Orders</h3>
 
-        <p>Enter a Date to View Week's Orders:</p>
+        <header className="App-header4">
+        <br/>
+        <h4>Enter a Date to View Week's Orders:</h4>
         <form onSubmit={handleDateSubmit}>
             <input id="date-input" type="date"/>
             <input type="submit" value="Search"/>
         </form>
-        <p id="viewing">{viewing}</p>
-
-        <header className="App-header3">
+        <h5 id="viewing">Viewing: All</h5>
+        <br/>
         <button onClick={goBack}>Select Different Employee</button>
-        </header>
         <ListOrders orders={filtered_orders}/>
-        <header className="App-header4"></header>
+        </header>
         </div>
     )
 }

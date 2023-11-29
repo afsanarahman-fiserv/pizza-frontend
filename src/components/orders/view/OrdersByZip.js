@@ -38,19 +38,18 @@ export default function OrdersByZip() {
     return(
         <div className ="App">
             <h3>ZIP: {location.state.zip_code} Orders</h3>
-
-        <p>Enter a Date to View Week's Orders:</p>
+        <header className="App-header4">
+        <br/>
+        <h4>Enter a Date to View Week's Orders:</h4>
         <form onSubmit={handleDateSubmit}>
             <input id="date-input" type="date"/>
             <input type="submit" value="Search"/>
         </form>
-        <p id="viewing">Viewing: All</p>
-
-        <header className="App-header3">
+        <h5 id="viewing">Viewing: All</h5>
+        <br/>
         <button onClick={goBack}>Select Different Zip</button>
-        </header>
         <ListOrders orders={ordersState.orders}/>
-        <header className="App-header4"></header>
+        </header>
         </div>
     );
 }
