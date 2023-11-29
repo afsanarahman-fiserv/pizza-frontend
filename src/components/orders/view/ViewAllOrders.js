@@ -41,16 +41,14 @@ export default function ViewAllOrders() {
     return(
         <div className ="App">
             <h3>All Orders</h3>
-
-        <p>Enter a Date to View Week's Orders:</p>
+        <header className="App-header4">
+        <br/>
+        <h4>Enter a Date to View Week's Orders:</h4>
         <form onSubmit={handleDateSubmit}>
             <input id="date-input" type="date"/>
             <input type="submit" value="Search"/>
         </form>
-        <p id="viewing">Viewing: All</p>
-
-        <header className="App-header4">
-        <br/>
+        <h5 id="viewing">Viewing: All</h5>
         <button onClick={goToEmployees}>View By Employee</button>
         <button onClick={goToZips}>View By ZIP</button>
         <br/>
