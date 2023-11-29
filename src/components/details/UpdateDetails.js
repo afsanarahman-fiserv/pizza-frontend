@@ -24,17 +24,6 @@ export default function UpdateDetails({order_id}) {
     let removeDetail = (detail_id) => {
         navigate("/viewOrders/editOrder/deleteDetail", {state : {detail_id}});
     }
-
-    let updateTotals = () => {
-        for(let i = 0; i < order_details.length; i++) {
-            let quantity = document.getElementById(i).value;
-            if(quantity) {
-                let new_total = quantity * order_details[i].price_charged;
-                let total_id = "total" + i;
-                document.getElementById(total_id).innerHTML = "$" + new_total;
-            }
-        }
-    }
     
     let viewReceipt = () => {
         let receipt = "";
